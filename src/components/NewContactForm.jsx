@@ -1,50 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../data/Context';
+import '../styles/Contacts.css';
 
 const NewContactForm = () => {
-  const [nombre, setNombre] = useState('');
+  const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
   const navigate = useNavigate();
+  const { addContact } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newContact = {
-      id: new Date().toISOString(),
-      key: new Date().toISOString(),
-      nombre,
-      avatar,
-      estadoMensaje: 'Pendiente'
-    };
-    const contacts = JSON.parse(localStorage.getItem('contactos')) || [];
-    contacts.push(newContact);
-    localStorage.setItem('contactos', JSON.stringify(contacts));
-    console.log('New contact added:', newContact); // Log para verificar el contacto agregado
-    navigate('/');
+    addContact({ name, avatar });
+    navigate('/contacts');
   };
 
   return (
     <div className="new-contact-form">
-      <h2>Agregar Nuevo Contacto</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nombre:
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Avatar:
-          <input
-            type="text"
-            value={avatar}
-            onChange={(e) => setAvatar(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Agregar</button>
+      <header className="header">
+        <button onClick={() => navigate('/contacts')} className="back-button">←</button>
+        <span>Nuevo Contacto</span>
+      </header>
+      <form onSubmit={handleSubmit} className="contact-form">
+        <input
+          type="text"
+          placeholder="Nombre del contacto"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="file"
+          accept=".jpg,.png"
+          onChange={(e) => setAvatar(e.target.files[0].name)}
+        />
+        <button type="submit">Agregar contacto</button>
       </form>
     </div>
   );

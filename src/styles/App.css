@@ -1,92 +1,50 @@
-/* src/styles/App.css */
-.contact-list {
+/* Estilos generales */
+.header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #075E54;
+  color: white;
 }
 
-.contact-item {
+.header .avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.footer {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-  text-decoration: none;
-  color: black;
+  background-color: #eeeeee;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.chat-window {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.messages {
-  flex: 1;
-  overflow-y: auto;
+.footer input {
+  flex-grow: 1;
   padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
 }
 
-.message {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.message.user {
-  align-items: flex-end;
-}
-
-.input {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-}
-
-.input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.input button {
-  margin-left: 10px;
+.footer button {
+  background-color: #075E54;
+  color: white;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 20px;
+  margin-left: 10px;
 }
 
-.contact-settings {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.new-contact-form {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
 @media (max-width: 600px) {
-  .contact-item {
-    padding: 8px;
+  .header, .footer {
+    padding: 5px;
   }
 
-  .avatar {
+  .header .avatar, .footer input, .footer button {
     width: 30px;
     height: 30px;
-  }
-
-  .input button {
-    padding: 8px 16px;
+    font-size: 14px;
   }
 }

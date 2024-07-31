@@ -1,24 +1,24 @@
-// Ruta relativa: src/components/ContactSettings.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import '../styles/Settings.css';
 
 const ContactSettings = () => {
   const { contactId } = useParams();
 
   return (
     <div className="contact-settings">
-      <div className="header">
+      <header className="header">
         <Link to={`/chat/${contactId}`} className="back-button">←</Link>
-        <div className="contact-info">
-          <h2>Contact Name</h2>
-        </div>
-      </div>
-      <div className="settings-options">
-        <button>Notificaciones</button>
-        <button>Mensajes Temporales</button>
-        <button>Grupos</button>
-        <button>Añadir a Favoritos</button>
-      </div>
+        <span className="contact-name">Nombre del Contacto</span>
+      </header>
+      <main>
+        <ul>
+          <li>Notificaciones</li>
+          <li>Mensajes temporales</li>
+          <li>Grupos</li>
+          <li>Añadir a Favoritos</li>
+        </ul>
+      </main>
     </div>
   );
 };

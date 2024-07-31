@@ -1,61 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { AppContext } from '../data/Context';
+import '../styles/Chat.css';
 
 const ChatWindow = () => {
   const { contactId } = useParams();
-  const [messages, setMessages] = useState([]);
-  const [messageText, setMessageText] = useState('');
+  const { contacts, messages, sendMessage } = useContext(AppContext);
+  const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    const storedMessages = JSON.parse(localStorage.getItem('mensajes')) || {};
-    setMessages(storedMessages[contactId] || []);
-    console.log('Loaded messages for contact:', contactId, storedMessages[contactId]); // Log para verificar los mensajes cargados
-  }, [contactId]);
+  const contact = contacts.find(c => c.id === contactId);
+  const contactMessages = messages[contactId] || [];
 
-  const handleSendMessage = () => {
-    if (messageText.trim() === '') return;
-
-    const newMessage = {
-      id: new Date().toISOString(),
-      texto: messageText,
-      autor: '1', // Assuming '1' is the ID for the current user
-      estado: 'Pendiente',
-      timestamp: new Date().toISOString()
-    };
-
-    const updatedMessages = [...messages, newMessage];
-    const allMessages = JSON.parse(localStorage.getItem('mensajes')) || {};
-    allMessages[contactId] = updatedMessages;
-    localStorage.setItem('mensajes', JSON.stringify(allMessages));
-    setMessages(updatedMessages);
-    setMessageText('');
-    console.log('Message sent:', newMessage); // Log para verificar el mensaje enviado
+  const handleSend = () => {
+    sendMessage(contactId, message);
+    setMessage('');
   };
 
   return (
     <div className="chat-window">
-      <div className="header">
-        <Link to={`/settings/${contactId}`} className="back-button">←</Link>
-        <div className="contact-info">
-          <h2>Contact Name</h2>
-        </div>
-      </div>
-      <div className="messages">
-        {messages.map(msg => (
-          <div key={msg.id} className={msg.autor === '1' ? 'my-message' : 'contact-message'}>
-            <p>{msg.texto}</p>
+      <header className="header">
+        <Link to="/contacts" className="back-button">←</Link>
+        <img src={`../images/${contact.avatar}`} alt={contact.name} className="avatar" />
+        <span className="contact-name">{contact.name}</span>
+        <Link to={`/settings/${contactId}`} className="settings-button">⚙️</Link>
+      </header>
+      <main>
+        {contactMessages.map((msg, index) => (
+          <div key={index} className={msg.isSender ? 'message user' : 'message contact'}>
+            {msg.text}
           </div>
         ))}
-      </div>
-      <div className="message-input">
+      </main>
+      <footer className="footer">
         <input
           type="text"
           placeholder="Escribir mensaje"
-          value={messageText}
-          onChange={(e) => setMessageText(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Enviar</button>
-      </div>
+        <button onClick={handleSend}>Enviar</button>
+      </footer>
     </div>
   );
 };

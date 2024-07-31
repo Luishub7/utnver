@@ -1,24 +1,20 @@
-/* Ruta relativa: src/styles/Settings.css */
+/* Estilos específicos para la configuración de contacto */
 .contact-settings {
-  display: flex;
-  flex-direction: column;
+  padding: 20px;
 }
 
-.settings-options {
+.contact-settings ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-settings ul li {
   padding: 10px;
+  border-bottom: 1px solid #cccccc;
 }
 
-.settings-options button {
-  display: block;
-  margin: 10px 0;
-  background: #25D366; /* Color verde para los botones */
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.settings-options button:hover {
-  background: #1EBEA5; /* Color verde más oscuro al pasar el ratón */
+@media (max-width: 600px) {
+  .contact-settings ul li {
+    padding: 8px;
+  }
 }

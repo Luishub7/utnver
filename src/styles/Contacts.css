@@ -1,0 +1,50 @@
+/* Estilos específicos para la lista de contactos */
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #cccccc;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact-info {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-info .contact-name {
+    font-weight: bold;
+  }
+  
+  .contact-info .last-message, .contact-info .message-time, .contact-info .message-status {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  @media (max-width: 600px) {
+    .avatar {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .contact-info .contact-name {
+      font-size: 16px;
+    }
+  
+    .contact-info .last-message, .contact-info .message-time, .contact-info .message-status {
+      font-size: 12px;
+    }
+  }
+  

@@ -1,4 +1,3 @@
-// Ruta relativa: src/pages/Settings.jsx
 import React from 'react';
 import ContactSettings from '../components/ContactSettings';
 
