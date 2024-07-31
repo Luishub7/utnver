@@ -1,0 +1,12 @@
+.contact-settings {
+    display: flex;
+    flex-direction: column;
+  }
+  .settings-options {
+    padding: 10px;
+  }
+  .settings-options button {
+    display: block;
+    margin: 10px 0;
+  }
+  
