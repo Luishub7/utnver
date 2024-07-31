@@ -1,84 +1,92 @@
-/* Ruta relativa: src/styles/App.css */
-.chat-window {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Ajustado para ocupar toda la altura de la ventana */
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  background: #075E54; /* Color verde de WhatsApp */
-  color: white;
-  padding: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de profundidad */
-}
-
-.header .back-button {
-  font-size: 24px;
-  margin-right: 10px;
-}
-
-.messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  background: #E5DDD5; /* Color de fondo de mensajes en WhatsApp */
-}
-
-.message-input {
-  display: flex;
-  padding: 10px;
-  background: #FFFFFF; /* Color de fondo del área de entrada */
-  border-top: 1px solid #CCCCCC; /* Línea superior para separar */
-}
-
-.message-input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #CCCCCC;
-  border-radius: 20px; /* Bordes redondeados para el campo de texto */
-}
-
-.message-input button {
-  padding: 10px;
-  border: none;
-  background: #25D366; /* Color verde para el botón de enviar */
-  color: white;
-  border-radius: 50%;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.message-input button:hover {
-  background: #1EBEA5; /* Color verde más oscuro al pasar el ratón */
-}
-
+/* src/styles/App.css */
 .contact-list {
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #DDDDDD;
-  transition: background-color 0.3s; /* Efecto suave en el cambio de color */
-}
-
-.contact-item:hover {
-  background-color: #F1F1F1; /* Color de fondo al pasar el ratón */
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: black;
 }
 
 .avatar {
-  width: 50px; /* Tamaño aumentado para mejor visibilidad */
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.settings-page, .contacts-page, .new-contact-form {
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.message.user {
+  align-items: flex-end;
+}
+
+.input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-settings {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
+}
+
+.new-contact-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+@media (max-width: 600px) {
+  .contact-item {
+    padding: 8px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .input button {
+    padding: 8px 16px;
+  }
 }

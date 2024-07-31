@@ -1,4 +1,4 @@
-// Ruta relativa: src/data/localStorage.js
+// localStorage.js
 
 // Función para guardar contactos en localStorage
 export const saveContacts = (contacts) => {
@@ -15,13 +15,8 @@ export const getContacts = () => {
 
 // Función para guardar mensajes en localStorage
 export const saveMessages = (contactId, messages) => {
-  // Obtener los mensajes existentes del localStorage
   const existingMessages = JSON.parse(localStorage.getItem('mensajes')) || {};
-
-  // Actualizar los mensajes para el contacto específico
   existingMessages[contactId] = messages;
-
-  // Guardar de nuevo en localStorage
   localStorage.setItem('mensajes', JSON.stringify(existingMessages));
   console.log('Messages saved for contact', contactId, ':', messages); // Console.log para depuración
 };

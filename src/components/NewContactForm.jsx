@@ -1,13 +1,9 @@
-// Ruta relativa: src/components/NewContactForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Lista de avatares disponibles
-const avatarOptions = Array.from({ length: 10 }, (_, i) => `${i + 1}.jpg`);
-
 const NewContactForm = () => {
   const [nombre, setNombre] = useState('');
-  const [avatar, setAvatar] = useState(avatarOptions[0]); // Valor predeterminado
+  const [avatar, setAvatar] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -22,6 +18,7 @@ const NewContactForm = () => {
     const contacts = JSON.parse(localStorage.getItem('contactos')) || [];
     contacts.push(newContact);
     localStorage.setItem('contactos', JSON.stringify(contacts));
+    console.log('New contact added:', newContact); // Log para verificar el contacto agregado
     navigate('/');
   };
 
@@ -40,17 +37,12 @@ const NewContactForm = () => {
         </label>
         <label>
           Avatar:
-          <select
+          <input
+            type="text"
             value={avatar}
             onChange={(e) => setAvatar(e.target.value)}
             required
-          >
-            {avatarOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          />
         </label>
         <button type="submit">Agregar</button>
       </form>

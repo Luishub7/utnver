@@ -1,4 +1,3 @@
-// Ruta relativa: src/components/ChatWindow.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ const ChatWindow = () => {
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem('mensajes')) || {};
     setMessages(storedMessages[contactId] || []);
+    console.log('Loaded messages for contact:', contactId, storedMessages[contactId]); // Log para verificar los mensajes cargados
   }, [contactId]);
 
   const handleSendMessage = () => {
@@ -29,6 +29,7 @@ const ChatWindow = () => {
     localStorage.setItem('mensajes', JSON.stringify(allMessages));
     setMessages(updatedMessages);
     setMessageText('');
+    console.log('Message sent:', newMessage); // Log para verificar el mensaje enviado
   };
 
   return (
@@ -41,7 +42,7 @@ const ChatWindow = () => {
       </div>
       <div className="messages">
         {messages.map(msg => (
-          <div key={msg.id} className={`message ${msg.autor === '1' ? 'sent' : 'received'}`}>
+          <div key={msg.id} className={msg.autor === '1' ? 'my-message' : 'contact-message'}>
             <p>{msg.texto}</p>
           </div>
         ))}
