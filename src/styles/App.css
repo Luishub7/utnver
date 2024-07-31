@@ -1,38 +1,50 @@
+/* Ruta relativa: src/styles/App.css */
 .chat-window {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .header {
-    display: flex;
-    align-items: center;
-    background: #007BFF;
-    color: white;
-    padding: 10px;
-  }
-  .header .back-button {
-    font-size: 24px;
-    margin-right: 10px;
-  }
-  .messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-  }
-  .message-input {
-    display: flex;
-  }
-  .message-input input {
-    flex: 1;
-    padding: 10px;
-  }
-  .message-input button {
-    padding: 10px;
-  }
-  .my-message {
-    text-align: left;
-  }
-  .contact-message {
-    text-align: right;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.header {
+  display: flex;
+  align-items: center;
+  background:  #007BFF;
+  color:  white;
+  padding: 10px;
+}
+.header .back-button {
+  font-size: 24px;
+  margin-right: 10px;
+}
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+.message-input {
+  display: flex;
+}
+.message-input input {
+  flex: 1;
+  padding: 10px;
+}
+.message-input button {
+  padding: 10px;
+}
+.contact-list {
+  display: flex;
+  flex-direction: column;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.settings-page, .contacts-page, .new-contact-form {
+  padding: 20px;
+}

@@ -1,3 +1,4 @@
+// Ruta relativa: src/pages/Contacts.jsx
 import React, { useState, useEffect } from 'react';
 import ContactList from '../components/ContactList';
 

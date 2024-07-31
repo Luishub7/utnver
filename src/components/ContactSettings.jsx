@@ -1,3 +1,4 @@
+// Ruta relativa: src/components/ContactSettings.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 

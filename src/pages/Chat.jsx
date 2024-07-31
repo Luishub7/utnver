@@ -1,3 +1,4 @@
+// Ruta relativa: src/pages/Chat.jsx
 import React from 'react';
 import ChatWindow from '../components/ChatWindow';
 
