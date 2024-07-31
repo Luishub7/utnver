@@ -1,3 +1,4 @@
+// src/components/ContactSettings.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/Settings.css';

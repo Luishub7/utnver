@@ -1,39 +1,40 @@
-import React, { useState, useContext } from 'react';
+// src/components/NewContactForm.jsx
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../data/Context';
 import '../styles/Contacts.css';
 
 const NewContactForm = () => {
   const [name, setName] = useState('');
-  const [avatar, setAvatar] = useState('');
   const navigate = useNavigate();
-  const { addContact } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addContact({ name, avatar });
-    navigate('/contacts');
+    if (name) {
+      // Obtener contactos desde localStorage
+      const savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+      // Agregar nuevo contacto
+      const newContact = {
+        id: Date.now(), // Usar un ID único
+        name,
+      };
+      savedContacts.push(newContact);
+      // Guardar contactos en localStorage
+      localStorage.setItem('contacts', JSON.stringify(savedContacts));
+      navigate('/');
+    }
   };
 
   return (
     <div className="new-contact-form">
-      <header className="header">
-        <button onClick={() => navigate('/contacts')} className="back-button">←</button>
-        <span>Nuevo Contacto</span>
-      </header>
-      <form onSubmit={handleSubmit} className="contact-form">
+      <h2>Add New Contact</h2>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Nombre del contacto"
+          placeholder="Contact Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
-          type="file"
-          accept=".jpg,.png"
-          onChange={(e) => setAvatar(e.target.files[0].name)}
-        />
-        <button type="submit">Agregar contacto</button>
+        <button type="submit">Add Contact</button>
       </form>
     </div>
   );

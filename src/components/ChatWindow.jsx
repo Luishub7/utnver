@@ -8,7 +8,9 @@ const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
+    console.log("Loading messages for contactId:", contactId);
     const storedMessages = JSON.parse(localStorage.getItem('messages')) || {};
+    console.log("Stored messages:", storedMessages);
     if (storedMessages[contactId]) {
       setMessages(storedMessages[contactId]);
     }
@@ -24,6 +26,8 @@ const ChatWindow = () => {
     const storedMessages = JSON.parse(localStorage.getItem('messages')) || {};
     storedMessages[contactId] = newMessages;
     localStorage.setItem('messages', JSON.stringify(storedMessages));
+
+    console.log("Messages updated in localStorage:", storedMessages);
 
     // Limpiar el input
     setNewMessage('');
