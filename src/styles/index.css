@@ -1,10 +1,6 @@
+/* Ruta relativa: src/styles/index.css */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #EDEDED; /* Fondo gris claro, similar a WhatsApp */
-  color: #333; /* Color de texto */
-}
-
-* {
-  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna y limpia */
+  background-color: #E5DDD5; /* Color de fondo similar al de los mensajes */
 }

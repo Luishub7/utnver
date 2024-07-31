@@ -1,19 +1,19 @@
+/* Ruta relativa: src/styles/Contacts.css */
 .contact-list {
   display: flex;
   flex-direction: column;
-  background-color: white; /* Fondo blanco similar a WhatsApp */
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #DDDDDD;
   padding: 10px;
-  cursor: pointer;
+  transition: background-color 0.3s; /* Efecto suave en el cambio de color */
 }
 
 .contact-item:hover {
-  background-color: #F0F0F0; /* Efecto hover para mejor UX */
+  background-color: #F1F1F1; /* Color de fondo al pasar el ratón */
 }
 
 .avatar {
@@ -21,7 +21,6 @@
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
-  object-fit: cover; /* Asegura que las imágenes se mantengan dentro del círculo */
 }
 
 .contact-info {

@@ -2,15 +2,16 @@
 .chat-window {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh; /* Ajustado para ocupar toda la altura de la ventana */
 }
 
 .header {
   display: flex;
   align-items: center;
-  background: #075E54; /* Cambiado a verde oscuro para parecerse a WhatsApp */
+  background: #075E54; /* Color verde de WhatsApp */
   color: white;
   padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de profundidad */
 }
 
 .header .back-button {
@@ -22,71 +23,60 @@
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  background-color: #ECE5DD; /* Fondo claro de los mensajes */
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  max-width: 70%;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.message.sent {
-  align-self: flex-end;
-  background-color: #DCF8C6; /* Verde claro para mensajes enviados */
-}
-
-.message.received {
-  align-self: flex-start;
-  background-color: white; /* Fondo blanco para mensajes recibidos */
+  background: #E5DDD5; /* Color de fondo de mensajes en WhatsApp */
 }
 
 .message-input {
   display: flex;
   padding: 10px;
-  background-color: white;
+  background: #FFFFFF; /* Color de fondo del área de entrada */
+  border-top: 1px solid #CCCCCC; /* Línea superior para separar */
 }
 
 .message-input input {
   flex: 1;
   padding: 10px;
-  border: none;
-  border-radius: 20px;
-  background-color: #F0F0F0;
-  margin-right: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 20px; /* Bordes redondeados para el campo de texto */
 }
 
 .message-input button {
   padding: 10px;
-  background-color: #075E54;
-  color: white;
   border: none;
+  background: #25D366; /* Color verde para el botón de enviar */
+  color: white;
   border-radius: 50%;
+  margin-left: 10px;
   cursor: pointer;
+}
+
+.message-input button:hover {
+  background: #1EBEA5; /* Color verde más oscuro al pasar el ratón */
 }
 
 .contact-list {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  padding: 10px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #DDDDDD;
+  transition: background-color 0.3s; /* Efecto suave en el cambio de color */
+}
+
+.contact-item:hover {
+  background-color: #F1F1F1; /* Color de fondo al pasar el ratón */
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px; /* Tamaño aumentado para mejor visibilidad */
+  height: 50px;
   border-radius: 50%;
   margin-right: 10px;
-  object-fit: cover; /* Asegura que las imágenes se mantengan dentro del círculo */
 }
 
 .settings-page, .contacts-page, .new-contact-form {

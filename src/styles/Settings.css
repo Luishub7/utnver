@@ -1,28 +1,24 @@
+/* Ruta relativa: src/styles/Settings.css */
 .contact-settings {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background-color: white;
 }
 
 .settings-options {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
 .settings-options button {
   display: block;
-  width: 100%;
-  padding: 10px;
   margin: 10px 0;
-  background-color: #075E54;
+  background: #25D366; /* Color verde para los botones */
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 20px;
   cursor: pointer;
-  text-align: left;
 }
 
 .settings-options button:hover {
-  background-color: #128C7E; /* Cambio de color al pasar el cursor */
+  background: #1EBEA5; /* Color verde más oscuro al pasar el ratón */
 }
