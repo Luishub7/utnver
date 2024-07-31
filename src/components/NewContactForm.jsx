@@ -2,9 +2,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Lista de avatares disponibles
+const avatarOptions = Array.from({ length: 10 }, (_, i) => `${i + 1}.jpg`);
+
 const NewContactForm = () => {
   const [nombre, setNombre] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState(avatarOptions[0]); // Valor predeterminado
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -37,12 +40,17 @@ const NewContactForm = () => {
         </label>
         <label>
           Avatar:
-          <input
-            type="text"
+          <select
             value={avatar}
             onChange={(e) => setAvatar(e.target.value)}
             required
-          />
+          >
+            {avatarOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </label>
         <button type="submit">Agregar</button>
       </form>

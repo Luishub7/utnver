@@ -4,47 +4,91 @@
   flex-direction: column;
   height: 100%;
 }
+
 .header {
   display: flex;
   align-items: center;
-  background:  #007BFF;
-  color:  white;
+  background: #075E54; /* Cambiado a verde oscuro para parecerse a WhatsApp */
+  color: white;
   padding: 10px;
 }
+
 .header .back-button {
   font-size: 24px;
   margin-right: 10px;
 }
+
 .messages {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
+  background-color: #ECE5DD; /* Fondo claro de los mensajes */
 }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.message.sent {
+  align-self: flex-end;
+  background-color: #DCF8C6; /* Verde claro para mensajes enviados */
+}
+
+.message.received {
+  align-self: flex-start;
+  background-color: white; /* Fondo blanco para mensajes recibidos */
+}
+
 .message-input {
   display: flex;
+  padding: 10px;
+  background-color: white;
 }
+
 .message-input input {
   flex: 1;
   padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #F0F0F0;
+  margin-right: 10px;
 }
+
 .message-input button {
   padding: 10px;
+  background-color: #075E54;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
+
 .contact-list {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
+
 .contact-item {
   display: flex;
   align-items: center;
   padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover; /* Asegura que las imágenes se mantengan dentro del círculo */
 }
+
 .settings-page, .contacts-page, .new-contact-form {
   padding: 20px;
 }

@@ -1,12 +1,28 @@
 .contact-settings {
-    display: flex;
-    flex-direction: column;
-  }
-  .settings-options {
-    padding: 10px;
-  }
-  .settings-options button {
-    display: block;
-    margin: 10px 0;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+}
+
+.settings-options {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.settings-options button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #075E54;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-options button:hover {
+  background-color: #128C7E; /* Cambio de color al pasar el cursor */
+}

@@ -41,7 +41,7 @@ const ChatWindow = () => {
       </div>
       <div className="messages">
         {messages.map(msg => (
-          <div key={msg.id} className={msg.autor === '1' ? 'my-message' : 'contact-message'}>
+          <div key={msg.id} className={`message ${msg.autor === '1' ? 'sent' : 'received'}`}>
             <p>{msg.texto}</p>
           </div>
         ))}
