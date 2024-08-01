@@ -1,4 +1,3 @@
-// src/pages/Contacts.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Contacts.css';
@@ -13,17 +12,24 @@ const Contacts = () => {
 
   return (
     <div className="contacts-page">
+      <div className="contacts-header">
+        <p>Contacts</p>
+        <Link to="/new-contact">
+          <button className="add-contact-btn">Add New Contact</button>
+        </Link>
+      </div>
       <ul>
-        {contacts.map((contact) => (
-          <li key={contact.id}>
-            <span>{contact.name}</span>
-            <Link to={`/chat/${contact.id}`}>Chat</Link>
-          </li>
-        ))}
+        {contacts.length > 0 ? (
+          contacts.map(contact => (
+            <li key={contact.id}>
+              <div>{contact.name}</div>
+              <Link to={`/chat/${contact.id}`}>Chat</Link>
+            </li>
+          ))
+        ) : (
+          <li>No contacts found</li>
+        )}
       </ul>
-      <Link to="/new-contact">
-        <button className="add-contact-btn">Add New Contact</button>
-      </Link>
     </div>
   );
 };
