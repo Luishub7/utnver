@@ -1,22 +1,22 @@
-// src/App.jsx
-import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ContactList from './components/ContactList';
+import AddContact from './components/AddContact';
 import ChatScreen from './components/ChatScreen';
-import { preloadData } from './data/data';
+import AddMessage from './components/AddMessage';
 
-function App() {
-  useEffect(() => {
-    preloadData();
-  }, []);
-
+const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<ContactList />} />
-      <Route path="/chat/:contactId" element={<ChatScreen />} />
-      {/* Puedes agregar más rutas aquí */}
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ContactList />} />
+        <Route path="/contacts" element={<ContactList />} />
+        <Route path="/add-contact" element={<AddContact />} />
+        <Route path="/chat/:contactId" element={<ChatScreen />} />
+        <Route path="/add-message/:contactId" element={<AddMessage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -1,23 +1,28 @@
-// src/components/ChatScreen.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, AppBar, Toolbar, Typography, TextField, IconButton, List, ListItem, ListItemText, Avatar } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import { TextField, Button, List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
 
-function ChatScreen() {
+const ChatScreen = () => {
   const { contactId } = useParams();
   const [contact, setContact] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
+    console.log('Loading contact and messages...');
+    
     // Cargar el contacto y los mensajes desde LocalStorage
     const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
     const selectedContact = contacts.find(contact => contact.id === contactId);
     setContact(selectedContact);
+    console.log('Selected Contact:', selectedContact);
 
     const contactMessages = JSON.parse(localStorage.getItem('messages')) || [];
-    setMessages(contactMessages.filter(msg => msg.contactId === contactId));
+    console.log('All Messages:', contactMessages);
+
+    const filteredMessages = contactMessages.filter(msg => msg.contactId === contactId);
+    setMessages(filteredMessages);
+    console.log('Filtered Messages:', filteredMessages);
   }, [contactId]);
 
   const handleSendMessage = () => {
@@ -30,47 +35,37 @@ function ChatScreen() {
       const updatedMessages = [...messages, message];
       setMessages(updatedMessages);
       localStorage.setItem('messages', JSON.stringify(updatedMessages));
+      console.log('Messages Saved:', updatedMessages);
       setNewMessage('');
     }
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">{contact ? contact.name : 'Chat'}</Typography>
-        </Toolbar>
-      </AppBar>
-      <Box sx={{ flexGrow: 1, overflowY: 'auto', padding: '16px' }}>
-        <List>
-          {messages.map((msg, index) => (
-            <ListItem key={index}>
-              <ListItemAvatar>
-                <Avatar>{contact ? contact.name[0] : '?'}</Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={msg.text}
-                secondary={msg.time}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-      <Box sx={{ padding: '16px', display: 'flex', alignItems: 'center' }}>
-        <TextField
-          fullWidth
-          variant="outlined"
-          placeholder="Escribe un mensaje..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-        />
-        <IconButton color="primary" onClick={handleSendMessage} sx={{ marginLeft: '8px' }}>
-          <SendIcon />
-        </IconButton>
-      </Box>
-    </Box>
+    <div style={{ padding: '16px' }}>
+      <h2>{contact?.name || 'Chat'}</h2>
+      <List>
+        {messages.map((msg, index) => (
+          <ListItem key={index}>
+            <ListItemAvatar>
+              <Avatar src={contact?.image} />
+            </ListItemAvatar>
+            <ListItemText primary={msg.text} secondary={msg.time} />
+          </ListItem>
+        ))}
+      </List>
+      <TextField
+        label="Escribe un mensaje"
+        variant="outlined"
+        fullWidth
+        value={newMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
+        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+      />
+      <Button onClick={handleSendMessage} variant="contained" color="primary">
+        Enviar
+      </Button>
+    </div>
   );
-}
+};
 
 export default ChatScreen;

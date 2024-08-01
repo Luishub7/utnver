@@ -1,63 +1,40 @@
-// src/components/ContactList.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, TextField, IconButton, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '@mui/material';
+import { List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
 
-function ContactList() {
-  const [contacts, setContacts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    // Cargar contactos desde LocalStorage
-    const savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-    setContacts(savedContacts);
-  }, []);
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+const ContactList = () => {
+  const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
 
   return (
-    <Box sx={{ padding: '16px' }}>
-      {/* Cabecera con campo de búsqueda y botón de agregar */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+    <div style={{ padding: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <TextField
           variant="outlined"
           placeholder="Buscar contactos"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
           InputProps={{
-            endAdornment: (
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            ),
+            endAdornment: <SearchIcon />
           }}
-          sx={{ flexGrow: 1, marginRight: '8px' }}
+          style={{ flex: 1, marginRight: '16px' }}
         />
-        <IconButton color="primary" component={Link} to="/add-contact">
-          <AddIcon />
-        </IconButton>
-      </Box>
-
-      {/* Lista de contactos */}
+        <Link to="/add-contact">
+          <IconButton color="primary">
+            Agregar Contacto
+          </IconButton>
+        </Link>
+      </div>
       <List>
-        {filteredContacts.map(contact => (
-          <ListItem key={contact.id} button component={Link} to={`/chat/${contact.id}`}>
+        {contacts.map((contact) => (
+          <ListItem button component={Link} to={`/chat/${contact.id}`} key={contact.id}>
             <ListItemAvatar>
-              <Avatar src={contact.image} alt={contact.name} />
+              <Avatar src={contact.image} />
             </ListItemAvatar>
-            <ListItemText
-              primary={contact.name}
-              secondary={contact.lastMessage ? `${contact.lastMessage.text} - ${contact.lastMessage.time}` : 'No hay mensajes'}
-            />
+            <ListItemText primary={contact.name} secondary={contact.lastMessage?.text} />
           </ListItem>
         ))}
       </List>
-    </Box>
+    </div>
   );
-}
+};
 
 export default ContactList;
