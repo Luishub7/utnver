@@ -1,0 +1,31 @@
+/* src/styles/ContactList.css */
+.contact-list {
+    padding: 20px;
+  }
+  
+  .contact-list header {
+    background-color: #f4f4f4;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .contact-list-container {
+    margin-top: 20px;
+  }
+  
+  .add-contact-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-contact-button:hover {
+    background-color: #0056b3;
+  }
+  
