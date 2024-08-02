@@ -1,3 +1,4 @@
+// src/components/AddMessage.jsx
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
@@ -17,6 +18,9 @@ const AddMessage = () => {
       const existingMessages = JSON.parse(localStorage.getItem('messages')) || [];
       localStorage.setItem('messages', JSON.stringify([...existingMessages, message]));
 
+      // Debugging: Verificar si el mensaje se guarda correctamente
+      console.log('New Message Added:', message);
+
       // Limpiar el campo de entrada
       setNewMessage('');
     }
@@ -31,7 +35,7 @@ const AddMessage = () => {
         onChange={(e) => setNewMessage(e.target.value)}
         fullWidth
         margin="normal"
-        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+        onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
       />
       <Button variant="contained" color="primary" onClick={handleSendMessage}>
         Enviar

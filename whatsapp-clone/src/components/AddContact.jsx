@@ -1,48 +1,56 @@
+// src/components/AddContact.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
 
 const AddContact = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const navigate = useNavigate();
 
-  const handleAddContact = () => {
-    if (name && image) {
-      const newContact = {
-        id: Date.now().toString(), // Genera un ID único basado en el timestamp
-        name,
-        image
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
       };
-
-      const existingContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-      localStorage.setItem('contacts', JSON.stringify([...existingContacts, newContact]));
-
-      // Redirigir a la pantalla de contactos después de agregar
-      navigate('/contacts');
+      reader.readAsDataURL(file);
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newContact = { id: Date.now(), name, image };
+    const storedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+    localStorage.setItem('contacts', JSON.stringify([...storedContacts, newContact]));
+    setName('');
+    setImage('');
   };
 
   return (
     <div>
-      <h2>Agregar Contacto</h2>
-      <TextField
-        label="Nombre"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Imagen (URL)"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <Button variant="contained" color="primary" onClick={handleAddContact}>
-        Agregar Contacto
-      </Button>
+      <h1>Agregar Contacto</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Imagen:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+        </div>
+        <div>
+          {image && <img src={image} alt="Contacto" style={{ width: '100px', height: '100px' }} />}
+        </div>
+        <button type="submit">Agregar</button>
+      </form>
     </div>
   );
 };

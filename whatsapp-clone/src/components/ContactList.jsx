@@ -1,38 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton, TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+// src/components/ContactList.jsx
+import React, { useEffect, useState } from 'react';
 
 const ContactList = () => {
-  const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    // Obtener los contactos almacenados en LocalStorage
+    const storedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+    const storedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+
+    // Añadir el último mensaje a cada contacto
+    const updatedContacts = storedContacts.map(contact => {
+      const lastMessage = storedMessages
+        .filter(msg => msg.contactId === contact.id)
+        .sort((a, b) => new Date(b.time) - new Date(a.time))[0]; // Obtener el mensaje más reciente
+      
+      return {
+        ...contact,
+        lastMessage: lastMessage || { text: 'No hay mensajes', time: '' },
+      };
+    });
+
+    setContacts(updatedContacts);
+  }, []);
 
   return (
-    <div style={{ padding: '16px' }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <TextField
-          variant="outlined"
-          placeholder="Buscar contactos"
-          InputProps={{
-            endAdornment: <SearchIcon />
-          }}
-          style={{ flex: 1, marginRight: '16px' }}
-        />
-        <Link to="/add-contact">
-          <IconButton color="primary">
-            Agregar Contacto
-          </IconButton>
-        </Link>
-      </div>
-      <List>
+    <div>
+      <h1>Contactos</h1>
+      <ul>
         {contacts.map((contact) => (
-          <ListItem button component={Link} to={`/chat/${contact.id}`} key={contact.id}>
-            <ListItemAvatar>
-              <Avatar src={contact.image} />
-            </ListItemAvatar>
-            <ListItemText primary={contact.name} secondary={contact.lastMessage?.text} />
-          </ListItem>
+          <li key={contact.id}>
+            <img
+              src={contact.image}
+              alt={contact.name}
+              style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+            />
+            <h2>{contact.name}</h2>
+            <p>Último mensaje: {contact.lastMessage.text}</p>
+            <p>Hora: {contact.lastMessage.time}</p>
+          </li>
         ))}
-      </List>
+      </ul>
     </div>
   );
 };

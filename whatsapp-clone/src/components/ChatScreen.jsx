@@ -1,3 +1,4 @@
+// src/components/ChatScreen.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { TextField, Button, List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
@@ -59,7 +60,7 @@ const ChatScreen = () => {
         fullWidth
         value={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+        onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
       />
       <Button onClick={handleSendMessage} variant="contained" color="primary">
         Enviar
