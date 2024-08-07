@@ -1,54 +1,52 @@
-// src/localStorage.js
+// src/data/localStorage.js
 
 // Función para cargar datos desde localStorage
 export const loadFromLocalStorage = (key) => {
   const data = localStorage.getItem(key);
-  console.log(`Cargando ${key} desde localStorage:`, data);
-  return data ? JSON.parse(data) : null;
+  return data ? JSON.parse(data) : [];
 };
-  
+
 // Función para guardar datos en localStorage
 export const saveToLocalStorage = (key, data) => {
-  console.log(`Guardando ${key} en localStorage:`, data);
   localStorage.setItem(key, JSON.stringify(data));
 };
-  
+
 // Función para agregar un nuevo mensaje
 export const addMessageToLocalStorage = (newMessage) => {
-  const messages = loadFromLocalStorage('messages') || [];
-  console.log('Mensajes actuales en localStorage:', messages);
-  const updatedMessages = [...messages, newMessage];
-  console.log('Mensajes actualizados:', updatedMessages);
-  saveToLocalStorage('messages', updatedMessages);
+  const messages = loadFromLocalStorage('messages');
+  messages.push(newMessage);
+  saveToLocalStorage('messages', messages);
 };
-  
-  // Función para inicializar contactos y mensajes si no existen en localStorage
-  export const initializeLocalStorage = () => {
-    if (!loadFromLocalStorage('contacts')) {
-      const contacts = [
-        { id: 1, name: 'Pepe', avatar: '/imagenes/1.webp' },
-        { id: 2, name: 'Ana', avatar: '/imagenes/2.webp' },
-        { id: 3, name: 'Luis', avatar: '/imagenes/3.webp' },
-        { id: 4, name: 'María', avatar: '/imagenes/4.webp' },
-        { id: 5, name: 'Carlos', avatar: '/imagenes/5.webp' },
-        { id: 6, name: 'Laura', avatar: '/imagenes/6.webp' },
-        { id: 7, name: 'José', avatar: '/imagenes/7.webp' },
-        { id: 8, name: 'Elena', avatar: '/imagenes/8.webp' },
-        { id: 9, name: 'Fernando', avatar: '/imagenes/9.webp' },
-        { id: 10, name: 'Clara', avatar: '/imagenes/10.webp' },
-      ];
-      saveToLocalStorage('contacts', contacts);
-    }
-  
-    if (!loadFromLocalStorage('messages')) {
-      const messages = [
-        { id: 1, authorId: 1, recipientId: 'yo', content: 'Hola Pepe!', date: new Date(), status: 'leído' },
-        { id: 2, authorId: 'yo', recipientId: 1, content: 'Hola, ¿cómo estás?', date: new Date(), status: 'leído' },
-        { id: 3, authorId: 2, recipientId: 'yo', content: '¡Hola Ana!', date: new Date(), status: 'leído' },
-        { id: 4, authorId: 'yo', recipientId: 2, content: 'Hola Ana, ¿qué tal?', date: new Date(), status: 'leído' },
-        // Otros mensajes
-      ];
-      saveToLocalStorage('messages', messages);
-    }
-  };
-  
+
+// Generar un nuevo ID único para los mensajes
+export const generateMessageId = () => {
+  const messages = loadFromLocalStorage('messages');
+  const lastMessage = messages[messages.length - 1];
+  return lastMessage ? lastMessage.id + 1 : 1; // Si no hay mensajes, comienza desde 1
+};
+
+// Función para inicializar contactos y mensajes si no existen en localStorage
+export const initializeLocalStorage = () => {
+  if (!loadFromLocalStorage('contacts').length) {
+    const contacts = [
+      { id: 1, name: 'Pepe', avatar: '/imagenes/1.webp' },
+      { id: 2, name: 'Ana', avatar: '/imagenes/2.webp' },
+      { id: 3, name: 'Luis', avatar: '/imagenes/3.webp' },
+      { id: 4, name: 'María', avatar: '/imagenes/4.webp' },
+      { id: 5, name: 'Carlos', avatar: '/imagenes/5.webp' },
+      { id: 6, name: 'Laura', avatar: '/imagenes/6.webp' },
+      { id: 7, name: 'José', avatar: '/imagenes/7.webp' },
+      { id: 8, name: 'Elena', avatar: '/imagenes/8.webp' }
+    ];
+    saveToLocalStorage('contacts', contacts);
+  }
+
+  if (!loadFromLocalStorage('messages').length) {
+    const messages = [
+      { id: 1, authorId: 1, recipientId: 2, content: 'Hola, ¿cómo estás?', date: new Date().toISOString(), status: 'read' },
+      { id: 2, authorId: 2, recipientId: 1, content: '¡Hola! Todo bien, ¿y tú?', date: new Date().toISOString(), status: 'delivered' },
+      { id: 3, authorId: 0, recipientId: 1, content: '¡Hola, Pepe!', date: new Date().toISOString(), status: 'pending' },
+    ];
+    saveToLocalStorage('messages', messages);
+  }
+};

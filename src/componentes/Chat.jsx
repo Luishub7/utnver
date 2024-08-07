@@ -1,10 +1,11 @@
 // src/componentes/Chat.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Message from './Message';
 import MessageInput from './MessageInput';
 import '../estilos/Chat.css';
-import { loadFromLocalStorage, addMessageToLocalStorage } from '../data/localStorage';
+import { loadFromLocalStorage, addMessageToLocalStorage, generateMessageId } from '../data/localStorage';
 
 const Chat = () => {
   const { contactId } = useParams();
@@ -13,37 +14,36 @@ const Chat = () => {
 
   useEffect(() => {
     const storedMessages = loadFromLocalStorage('messages') || [];
-    console.log('Cargando mensajes desde localStorage:', storedMessages);
     setMessages(storedMessages);
   }, []);
 
   const contactMessages = messages.filter(
     message =>
-      message.authorId == contactId ||
-      (message.authorId == 'yo' && message.recipientId == contactId)
+      message.authorId === Number(contactId) ||
+      (message.authorId === 0 && message.recipientId === Number(contactId))
   );
 
-  const contact = loadFromLocalStorage('contacts').find(c => c.id == contactId);
+  const contact = loadFromLocalStorage('contacts').find(c => c.id === Number(contactId));
 
   const handleContactClick = () => {
     navigate(`/settings/${contactId}`);
   };
 
   const handleSendMessage = (newMessageContent) => {
-    console.log('Nuevo mensaje:', newMessageContent);
     const newMessage = {
-      id: messages.length + 1,
-      authorId: 'yo',
-      recipientId: contactId,
+      id: generateMessageId(),
+      authorId: 0,
+      recipientId: Number(contactId),
       content: newMessageContent,
-      date: new Date(),
+      date: new Date().toISOString(),
       status: 'pending',
     };
-    console.log('Agregando mensaje al estado local:', newMessage);
+
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
-    console.log('Guardando mensajes actualizados en localStorage:', updatedMessages);
-    addMessageToLocalStorage(newMessage); // Agregar el mensaje al localStorage
+    addMessageToLocalStorage(newMessage);
+
+    window.dispatchEvent(new Event('storage')); // Disparar evento de almacenamiento
   };
 
   return (
