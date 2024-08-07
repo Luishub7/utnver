@@ -73,6 +73,7 @@ const ContactList = () => {
 
   return (
     <div className="contact-list-container">
+      <div className='contact-search'>
       <input
         type="text"
         placeholder="Buscar contactos"
@@ -80,6 +81,7 @@ const ContactList = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      </div>
       <ul className="contact-list">
         {filteredContacts.map(contact => {
           const lastMessage = getLastMessage(messages, contact.id);
