@@ -6,9 +6,12 @@ import { loadFromLocalStorage } from '../data/localStorage';
 
 const getLastMessage = (contactId) => {
   const messages = loadFromLocalStorage('messages') || [];
-  const contactMessages = messages.filter(message =>
-    message.authorId === contactId || (message.authorId === 'yo' && message.recipientId === contactId)
-  );
+  // Ordenar mensajes por fecha, en caso de que no estén ordenados
+  const contactMessages = messages
+    .filter(message =>
+      message.authorId === contactId || (message.authorId === 'yo' && message.recipientId === contactId)
+    )
+    .sort((a, b) => new Date(a.date) - new Date(b.date)); // Ordenar por fecha ascendente
   return contactMessages[contactMessages.length - 1];
 };
 
@@ -44,10 +47,16 @@ const getStatusText = (status) => {
 const ContactList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [contacts, setContacts] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setContacts(loadFromLocalStorage('contacts') || []);
-  }, []);
+    const storedContacts = loadFromLocalStorage('contacts') || [];
+    const storedMessages = loadFromLocalStorage('messages') || [];
+    setContacts(storedContacts);
+    setMessages(storedMessages);
+    console.log('Contactos cargados:', storedContacts);
+    console.log('Mensajes cargados:', storedMessages);
+  }, []); // Recarga los contactos y mensajes cuando el componente se monta
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -71,7 +80,9 @@ const ContactList = () => {
                 <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
                 <div className="contact-info">
                   <div className="contact-name">{contact.name}</div>
-                  <div className="contact-lastMessage">{lastMessage ? lastMessage.content : 'No hay mensajes'}</div>
+                  <div className="contact-lastMessage">
+                    {lastMessage ? lastMessage.content : 'No hay mensajes'}
+                  </div>
                   <div className="contact-date-status">
                     {lastMessage && (
                       <>

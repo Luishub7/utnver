@@ -12,7 +12,9 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setMessages(loadFromLocalStorage('messages') || []);
+    const storedMessages = loadFromLocalStorage('messages') || [];
+    console.log('Cargando mensajes desde localStorage:', storedMessages);
+    setMessages(storedMessages);
   }, []);
 
   const contactMessages = messages.filter(
@@ -28,6 +30,7 @@ const Chat = () => {
   };
 
   const handleSendMessage = (newMessageContent) => {
+    console.log('Nuevo mensaje:', newMessageContent);
     const newMessage = {
       id: messages.length + 1,
       authorId: 'yo',
@@ -36,8 +39,11 @@ const Chat = () => {
       date: new Date(),
       status: 'pending',
     };
+    console.log('Agregando mensaje al estado local:', newMessage);
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
+    console.log('Guardando mensajes actualizados en localStorage:', updatedMessages);
     addMessageToLocalStorage(newMessage); // Agregar el mensaje al localStorage
-    setMessages([...messages, newMessage]);
   };
 
   return (

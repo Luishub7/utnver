@@ -2,21 +2,25 @@
 
 // Función para cargar datos desde localStorage
 export const loadFromLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  };
+  const data = localStorage.getItem(key);
+  console.log(`Cargando ${key} desde localStorage:`, data);
+  return data ? JSON.parse(data) : null;
+};
   
-  // Función para guardar datos en localStorage
-  export const saveToLocalStorage = (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
+// Función para guardar datos en localStorage
+export const saveToLocalStorage = (key, data) => {
+  console.log(`Guardando ${key} en localStorage:`, data);
+  localStorage.setItem(key, JSON.stringify(data));
+};
   
-  // Función para agregar un nuevo mensaje
-  export const addMessageToLocalStorage = (newMessage) => {
-    const messages = loadFromLocalStorage('messages') || [];
-    const updatedMessages = [...messages, newMessage];
-    saveToLocalStorage('messages', updatedMessages);
-  };
+// Función para agregar un nuevo mensaje
+export const addMessageToLocalStorage = (newMessage) => {
+  const messages = loadFromLocalStorage('messages') || [];
+  console.log('Mensajes actuales en localStorage:', messages);
+  const updatedMessages = [...messages, newMessage];
+  console.log('Mensajes actualizados:', updatedMessages);
+  saveToLocalStorage('messages', updatedMessages);
+};
   
   // Función para inicializar contactos y mensajes si no existen en localStorage
   export const initializeLocalStorage = () => {
