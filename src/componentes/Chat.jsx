@@ -1,23 +1,27 @@
 // src/componentes/Chat.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { MESSAGES } from '../data/messages';
 import Message from './Message';
 import MessageInput from './MessageInput';
 import '../estilos/Chat.css';
-import { CONTACTS } from '../data/contacts';
+import { loadFromLocalStorage, addMessageToLocalStorage } from '../data/localStorage';
 
 const Chat = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const [messages, setMessages] = useState(MESSAGES);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    setMessages(loadFromLocalStorage('messages') || []);
+  }, []);
 
   const contactMessages = messages.filter(
     message =>
       message.authorId == contactId ||
       (message.authorId == 'yo' && message.recipientId == contactId)
   );
-  const contact = CONTACTS.find(c => c.id == contactId);
+
+  const contact = loadFromLocalStorage('contacts').find(c => c.id == contactId);
 
   const handleContactClick = () => {
     navigate(`/settings/${contactId}`);
@@ -32,6 +36,7 @@ const Chat = () => {
       date: new Date(),
       status: 'pending',
     };
+    addMessageToLocalStorage(newMessage); // Agregar el mensaje al localStorage
     setMessages([...messages, newMessage]);
   };
 

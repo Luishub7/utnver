@@ -1,13 +1,13 @@
 // src/componentes/ContactSettings.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CONTACTS } from '../data/contacts';
 import '../estilos/ContactSettings.css';
+import { loadFromLocalStorage } from '../data/localStorage';
 
 const ContactSettings = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const contact = CONTACTS.find(c => c.id == contactId);
+  const contact = loadFromLocalStorage('contacts').find(c => c.id == contactId);
 
   return (
     <div className="settings-container">

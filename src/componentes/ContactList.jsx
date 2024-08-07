@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+// src/componentes/ContactList.jsx
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CONTACTS } from '../data/contacts';
-import { MESSAGES } from '../data/messages';
 import '../estilos/ContactList.css';
+import { loadFromLocalStorage } from '../data/localStorage';
 
 const getLastMessage = (contactId) => {
-  const contactMessages = MESSAGES.filter(message =>
+  const messages = loadFromLocalStorage('messages') || [];
+  const contactMessages = messages.filter(message =>
     message.authorId === contactId || (message.authorId === 'yo' && message.recipientId === contactId)
   );
   return contactMessages[contactMessages.length - 1];
@@ -42,9 +43,13 @@ const getStatusText = (status) => {
 
 const ContactList = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [contacts, setContacts] = useState([]);
 
-  // Filtra los contactos según el término de búsqueda
-  const filteredContacts = CONTACTS.filter(contact =>
+  useEffect(() => {
+    setContacts(loadFromLocalStorage('contacts') || []);
+  }, []);
+
+  const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
