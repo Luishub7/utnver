@@ -1,0 +1,62 @@
+/* src/styles/ContactSettingsPage.css */
+.contact-settings-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .settings-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .back-button i {
+    font-size: 24px;
+  }
+  
+  .contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .contact-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .settings-options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .option-button {
+    background: #f0f0f0;
+    border: none;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+  }
+  
+  .option-button:hover {
+    background: #ddd;
+  }
+  
