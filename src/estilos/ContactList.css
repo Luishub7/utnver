@@ -4,12 +4,8 @@
   position: relative;
   padding-top: 60px; /* Añadimos un padding superior para evitar que el contenido se superponga con el campo de búsqueda */
 }
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.contact-search{
+
+.contact-search {
   display: flex;
   justify-content: center;
   position: fixed; /* Fijamos el input en la parte superior */
@@ -19,22 +15,15 @@
   z-index: 1000; /* Nos aseguramos de que esté por encima de otros elementos */
   padding: 10px;
   background-color: #ffffff0d; /* Añadimos un fondo blanco para que se vea mejor */
-  /* border-bottom: 1px solid #ccc; */ /* Añadimos una línea inferior para separar el input del resto del contenido */
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */ /* Añadimos un ligero sombreado para destacar el input */
+  border-bottom: 1px solid #ccc; /* Añadimos una línea inferior para separar el input del resto del contenido */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añadimos un ligero sombreado para destacar el input */
 }
+
 .search-input {
-  /* flex-grow: 1; */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  margin-right: 10px;
   width: 95%;
-  
-}
-
-.search-icon {
-  font-size: 20px;
-  color: #888;
 }
 
 .contact-list {
@@ -44,13 +33,10 @@
 }
 
 .contact-item {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin: 10px 0;
-  padding: 10px;
   display: flex;
-  align-items: center;
-  background-color: white;
+  align-items: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .contact-link {
@@ -70,33 +56,42 @@
 }
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos estén en una columna */
+  justify-content: flex-start; /* Alinea verticalmente los elementos al principio */
 }
 
 .contact-name {
   font-weight: bold;
+  margin-bottom: 2px; /* Margen inferior para separar del último mensaje */
+  text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .contact-lastMessage {
   font-size: 0.9em;
+  color: #555;
+  text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .contact-date-status {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end; /* Alinea los elementos al final (derecha) del contenedor */
+  margin-left: 10px; /* Añade un margen a la izquierda para separar de la información de contacto */
 }
 
 .contact-date {
   font-size: 0.8em;
-  color: gray;
+  color: #999;
 }
 
 .contact-status {
   font-size: 0.8em;
-  margin-left: 10px;
+  color: #999;
+  margin-top: 5px; /* Añade espacio entre la fecha y el estado */
 }
 
 .contact-status.read {

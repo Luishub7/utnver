@@ -74,15 +74,14 @@ const ContactList = () => {
   return (
     <div className="contact-list-container">
       <div className='contact-search'>
-      <input
-        type="text"
-        placeholder="Buscar contactos"
-        className="search-input"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Buscar contactos"
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
-      <div>
       <ul className="contact-list">
         {filteredContacts.map(contact => {
           const lastMessage = getLastMessage(messages, contact.id);
@@ -95,19 +94,18 @@ const ContactList = () => {
                   <div className="contact-lastMessage">
                     {lastMessage ? lastMessage.content : 'No hay mensajes'}
                   </div>
-                  {lastMessage && (
-                    <div className="contact-date-status">
-                      <span className="contact-date">{formatDate(lastMessage.date)}</span>
-                      <span className={`contact-status ${lastMessage.status}`}>{getStatusText(lastMessage.status)}</span>
-                    </div>
-                  )}
                 </div>
+                {lastMessage && (
+                  <div className="contact-date-status">
+                    <span className="contact-date">{formatDate(lastMessage.date)}</span>
+                    <span className={`contact-status ${lastMessage.status}`}>{getStatusText(lastMessage.status)}</span>
+                  </div>
+                )}
               </Link>
             </li>
           );
         })}
       </ul>
-      </div>
     </div>
   );
 };
