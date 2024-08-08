@@ -1,6 +1,4 @@
 /* src/estilos/Chat.css */
-@import './common.css';
-
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -39,7 +37,36 @@
   flex-grow: 1;
   margin-right: 10px;
 }
+.contact-info-chat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
 
-/* .message-input-container button {
-  @extend .button;
-} */
+.message-input-container button {
+  background-color: #28a745;
+}
+
+.message-input-container button:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .chat-header {
+    padding: 8px;
+  }
+}

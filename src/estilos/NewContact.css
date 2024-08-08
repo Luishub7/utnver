@@ -1,6 +1,4 @@
 /* src/estilos/NewContact.css */
-@import './common.css';
-
 .new-contact-container {
   display: flex;
   flex-direction: column;
@@ -12,11 +10,26 @@
   margin-bottom: 20px;
 }
 
-/* .new-contact-container input,
+.new-contact-container input,
 .new-contact-container select {
-  @extend .input;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
 }
 
 .new-contact-container button {
-  @extend .button;
-} */
+  background-color: #28a745;
+}
+
+.new-contact-container button:hover {
+  background-color: #218838;
+}

@@ -1,6 +1,4 @@
 /* src/estilos/Message.css */
-@import './common.css';
-
 .message-container {
   padding: 10px;
   border-radius: 10px;
@@ -9,13 +7,11 @@
   flex-direction: column;
 }
 
-/* .my-message {
-  @extend .my-message;
-}
-
+.my-message,
 .their-message {
-  @extend .their-message;
-} */
+  padding: 10px;
+  border-radius: 10px;
+}
 
 .message-content {
   padding: 10px;

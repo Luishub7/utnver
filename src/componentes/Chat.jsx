@@ -52,7 +52,7 @@ const Chat = () => {
         <button className="back-button" onClick={() => navigate('/')}>
           ←
         </button>
-        <div className="contact-info" onClick={handleContactClick}>
+        <div className="contact-info-chat" onClick={handleContactClick}>
           <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
           <div className="contact-name">{contact.name}</div>
         </div>

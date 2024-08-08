@@ -72,7 +72,7 @@ const ContactList = () => {
             <li key={contact.id} className="contact-item">
               <Link to={`/chat/${contact.id}`} className="contact-link">
                 <img src={contact.avatar} alt={contact.name} className="contact-avatar" />
-                <div className="contact-info">
+                <div className="contact-info-main">
                   <span className="contact-name">{contact.name}</span>
                   <span className="contact-lastMessage">
                     {lastMessage ? lastMessage.content : 'Sin mensajes'}
