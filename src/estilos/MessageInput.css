@@ -8,7 +8,7 @@
   background-color: white;
 }
 
-.message-input {
+/* .message-input {
   @extend .input;
   margin-right: 10px;
 }
@@ -16,7 +16,7 @@
 .send-button {
   @extend .button;
   background-color: #007bff;
-}
+} */
 
 .send-button:hover {
   background-color: #0056b3;

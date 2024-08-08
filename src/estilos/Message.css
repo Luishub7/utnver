@@ -9,13 +9,13 @@
   flex-direction: column;
 }
 
-.my-message {
+/* .my-message {
   @extend .my-message;
 }
 
 .their-message {
   @extend .their-message;
-}
+} */
 
 .message-content {
   padding: 10px;

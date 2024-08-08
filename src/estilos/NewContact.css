@@ -12,11 +12,11 @@
   margin-bottom: 20px;
 }
 
-.new-contact-container input,
+/* .new-contact-container input,
 .new-contact-container select {
   @extend .input;
 }
 
 .new-contact-container button {
   @extend .button;
-}
+} */
