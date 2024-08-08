@@ -20,9 +20,14 @@
   width: 60%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 15px;
 }
-
+.add-contact-button{
+  border-radius: 15px;
+  border-style: none;
+  background-color: #52cf52;
+  
+}
 .contact-list {
   list-style: none;
   padding: 0;

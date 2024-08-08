@@ -61,7 +61,7 @@ const ContactList = () => {
           className="search-input"
         />
         <button className="add-contact-button" onClick={handleAddContactClick}>
-          Añadir nuevo contacto
+          Nuevo Contacto
         </button>
       </div>
 
