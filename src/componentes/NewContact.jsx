@@ -11,17 +11,18 @@ const NewContact = () => {
   const navigate = useNavigate();
 
   const avatarOptions = [
-    '/images/1.webp',
-    '/images/2.webp',
-    '/images/3.webp',
-    '/images/4.webp',
-    '/images/4.webp',
-    '/images/5.webp',
-    '/images/6.webp',
-    '/images/7.webp',
-    '/images/8.webp', 
-    '/images/9.webp',
-    '/images/10.webp',
+    '/imagenes/1.webp',
+    '/imagenes/2.webp',
+    '/imagenes/3.webp',
+    '/imagenes/4.webp',
+    '/imagenes/4.webp',
+    '/imagenes/5.webp',
+    '/imagenes/6.webp',
+    '/imagenes/7.webp',
+    '/imagenes/8.webp', 
+    '/imagenes/9.webp',
+    '/imagenes/10.webp',
+
   ];
 
   const handleAddContact = () => {
@@ -49,8 +50,8 @@ const NewContact = () => {
       />
       <select value={avatar} onChange={(e) => setAvatar(e.target.value)}>
         <option value="">Seleccionar Avatar</option>
-        {avatarOptions.map((option) => (
-          <option key={option} value={option}>
+        {avatarOptions.map((option, index) => (
+          <option key={index} value={option}>
             {option}
           </option>
         ))}

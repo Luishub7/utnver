@@ -1,4 +1,5 @@
 // src/componentes/MessageInput.jsx
+
 import React, { useState } from 'react';
 import '../estilos/MessageInput.css';
 

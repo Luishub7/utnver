@@ -36,7 +36,7 @@ const Chat = () => {
       recipientId: Number(contactId),
       content: newMessageContent,
       date: new Date().toISOString(),
-      status: 'pending',
+      status: 'Pendiente', // Estado en español
     };
 
     const updatedMessages = [...messages, newMessage];

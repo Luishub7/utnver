@@ -43,9 +43,9 @@ export const initializeLocalStorage = () => {
 
   if (!loadFromLocalStorage('messages').length) {
     const messages = [
-      { id: 1, authorId: 1, recipientId: 2, content: 'Hola, ¿cómo estás?', date: new Date().toISOString(), status: 'read' },
-      { id: 2, authorId: 2, recipientId: 1, content: '¡Hola! Todo bien, ¿y tú?', date: new Date().toISOString(), status: 'delivered' },
-      { id: 3, authorId: 0, recipientId: 1, content: '¡Hola, Pepe!', date: new Date().toISOString(), status: 'pending' },
+      { id: 1, authorId: 1, recipientId: 2, content: 'Hola, ¿cómo estás?', date: new Date().toISOString(), status: 'Leído' },
+      { id: 2, authorId: 2, recipientId: 1, content: '¡Hola! Todo bien, ¿y tú?', date: new Date().toISOString(), status: 'Entregado' },
+      { id: 3, authorId: 0, recipientId: 1, content: '¡Hola, Pepe!', date: new Date().toISOString(), status: 'Pendiente' },
     ];
     saveToLocalStorage('messages', messages);
   }
