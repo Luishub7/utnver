@@ -31,15 +31,17 @@ label {
 }
 
 input[type="text"], select {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   font-size: 16px;
   margin-top: 5px;
+  border-radius: 15px;
+  border: none;
 }
 
 .new-contact-submit {
   padding: 10px 20px;
-  background-color: #A3C9A8;
+  background-color: #12be29;
   color: #fff;
   border: none;
   cursor: pointer;

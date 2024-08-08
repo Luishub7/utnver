@@ -18,11 +18,11 @@
 
 .add-contact-button {
   padding: 10px 20px;
-  background-color: #A3C9A8;
+  background-color: #12be29;
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .contact-list {
