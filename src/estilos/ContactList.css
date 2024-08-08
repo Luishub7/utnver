@@ -9,18 +9,29 @@
   align-items: center;
   margin-bottom: 20px;
 }
-
-.search-input {
+.contact-search{
+  display: flex;
+  justify-content: center;
   position: fixed; /* Fijamos el input en la parte superior */
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000; /* Nos aseguramos de que esté por encima de otros elementos */
   padding: 10px;
-  background-color: #fff; /* Añadimos un fondo blanco para que se vea mejor */
-  border-bottom: 1px solid #ccc; /* Añadimos una línea inferior para separar el input del resto del contenido */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añadimos un ligero sombreado para destacar el input */
+  background-color: #ffffff0d; /* Añadimos un fondo blanco para que se vea mejor */
+  /* border-bottom: 1px solid #ccc; */ /* Añadimos una línea inferior para separar el input del resto del contenido */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */ /* Añadimos un ligero sombreado para destacar el input */
 }
+.search-input {
+  /* flex-grow: 1; */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  width: 95%;
+  
+}
+
 .search-icon {
   font-size: 20px;
   color: #888;
