@@ -1,4 +1,6 @@
 /* src/estilos/MessageInput.css */
+@import './common.css';
+
 .message-input-container {
   display: flex;
   padding: 10px;
@@ -7,21 +9,13 @@
 }
 
 .message-input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  @extend .input;
   margin-right: 10px;
-  outline: none;
 }
 
 .send-button {
-  padding: 10px 20px;
+  @extend .button;
   background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
 }
 
 .send-button:hover {

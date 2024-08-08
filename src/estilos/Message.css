@@ -1,4 +1,5 @@
 /* src/estilos/Message.css */
+@import './common.css';
 
 .message-container {
   padding: 10px;
@@ -9,13 +10,11 @@
 }
 
 .my-message {
-  align-self: flex-end;
-  background-color: #e0f7e9;
+  @extend .my-message;
 }
 
 .their-message {
-  align-self: flex-start;
-  background-color: #f0f0f0;
+  @extend .their-message;
 }
 
 .message-content {
@@ -33,26 +32,4 @@
 
 .message-status {
   margin-left: 10px;
-}
-
-.message-status.read {
-  color: green;
-}
-
-.message-status.delivered {
-  color: blue;
-}
-
-.message-status.pending {
-  color: orange;
-}
-
-@media (max-width: 768px) {
-  .message-content {
-    font-size: 0.9em;
-  }
-
-  .message-info {
-    font-size: 0.7em;
-  }
 }

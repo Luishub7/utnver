@@ -1,4 +1,5 @@
 /* src/estilos/Chat.css */
+@import './common.css';
 
 .chat-container {
   display: flex;
@@ -21,26 +22,6 @@
   cursor: pointer;
 }
 
-.contact-info {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  flex-grow: 1;
-}
-
-.contact-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #ddd;
-  margin-right: 10px;
-}
-
-.contact-name {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
 .messages-container {
   flex-grow: 1;
   overflow-y: auto;
@@ -56,37 +37,9 @@
 
 .message-input-container input {
   flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   margin-right: 10px;
 }
 
 .message-input-container button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.message-input-container button:hover {
-  background-color: #218838;
-}
-
-@media (max-width: 768px) {
-  .contact-avatar {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-  }
-
-  .contact-name {
-    font-size: 1em;
-  }
-
-  .back-button {
-    font-size: 1.2em;
-  }
+  @extend .button;
 }

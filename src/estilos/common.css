@@ -1,0 +1,78 @@
+/* src/estilos/common.css */
+
+/* Estilos para el avatar de contacto */
+.contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 10px;
+  }
+  
+  /* Estilos para el nombre del contacto */
+  .contact-name {
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* Estilos para la información del contacto */
+  .contact-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Estilos para los botones */
+  .button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos para inputs */
+  .input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para el contenedor de mensajes */
+  .message-container {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilos para mensajes enviados y recibidos */
+  .my-message {
+    align-self: flex-end;
+    background-color: #e0f7e9;
+  }
+  
+  .their-message {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+  }
+  
+  /* Estilos para el estado de los mensajes */
+  .message-status.read {
+    color: green;
+  }
+  
+  .message-status.delivered {
+    color: blue;
+  }
+  
+  .message-status.pending {
+    color: orange;
+  }
+  
