@@ -53,6 +53,8 @@
 
 .message-input-container button {
   background-color: #28a745;
+  border: none;
+  border-radius: 15px;
 }
 
 .message-input-container button:hover {

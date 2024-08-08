@@ -42,9 +42,22 @@ const ContactList = () => {
     setMessages(loadedMessages);
   }, []);
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredContacts = contacts
+    .filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .sort((a, b) => {
+      const lastMessageA = getLastMessage(messages, a.id);
+      const lastMessageB = getLastMessage(messages, b.id);
+
+      if (lastMessageA && lastMessageB) {
+        return new Date(lastMessageB.date) - new Date(lastMessageA.date); // Ordenar por fecha de último mensaje
+      } else if (lastMessageA) {
+        return -1; // Contacto A tiene mensaje, B no
+      } else if (lastMessageB) {
+        return 1; // Contacto B tiene mensaje, A no
+      } else {
+        return 0; // Ninguno tiene mensajes, mantener orden actual
+      }
+    });
 
   const handleAddContactClick = () => {
     navigate('/new-contact'); // Redirigir a la pantalla de nuevo contacto
