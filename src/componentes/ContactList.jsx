@@ -82,6 +82,7 @@ const ContactList = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       </div>
+      <div>
       <ul className="contact-list">
         {filteredContacts.map(contact => {
           const lastMessage = getLastMessage(messages, contact.id);
@@ -106,6 +107,7 @@ const ContactList = () => {
           );
         })}
       </ul>
+      </div>
     </div>
   );
 };
