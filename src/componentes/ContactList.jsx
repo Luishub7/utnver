@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../estilos/ContactList.css';
-import { loadFromLocalStorage, saveToLocalStorage } from '../data/localStorage';
+import { loadFromLocalStorage } from '../data/localStorage';
 
 const getLastMessage = (messages, contactId) => {
   const contactMessages = messages

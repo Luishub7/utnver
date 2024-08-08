@@ -1,35 +1,48 @@
 /* src/estilos/NewContact.css */
+
 .new-contact-container {
+  padding: 20px;
+}
+
+.new-contact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button, .home-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+.new-contact-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
 }
 
-.new-contact-container h2 {
-  margin-bottom: 20px;
-}
-
-.new-contact-container input,
-.new-contact-container select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+label {
   margin-bottom: 15px;
 }
 
-.button {
-  padding: 10px 15px;
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.new-contact-submit {
+  padding: 10px 20px;
+  background-color: #A3C9A8;
+  color: #fff;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  color: white;
-}
-
-.new-contact-container button {
-  background-color: #28a745;
-}
-
-.new-contact-container button:hover {
-  background-color: #218838;
+  border-radius: 5px;
+  align-self: flex-end;
 }

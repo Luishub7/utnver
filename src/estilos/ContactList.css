@@ -1,92 +1,84 @@
 /* src/estilos/ContactList.css */
+
 .contact-list-container {
-  position: relative;
-  padding-top: 60px;
+  padding: 20px;
 }
 
 .contact-search {
   display: flex;
-  justify-content: space-evenly;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 10px;
-  background-color: #ffffff0d;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .search-input {
-  width: 60%;
+  width: 70%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
+  font-size: 16px;
 }
-.add-contact-button{
-  border-radius: 15px;
-  border-style: none;
-  background-color: #52cf52;
-  
+
+.add-contact-button {
+  padding: 10px 20px;
+  background-color: #A3C9A8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
+
 .contact-list {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 
 .contact-link {
   text-decoration: none;
-  color: black;
+  color: inherit;
   display: flex;
   align-items: center;
-  width: 100%;
+  flex-grow: 1;
+}
+
+.contact-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .contact-info-main {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+}
+
+.contact-name {
+  font-weight: bold;
 }
 
 .contact-lastMessage {
-  font-size: 0.9em;
-  color: #555;
+  font-size: 14px;
+  color: #888;
 }
 
 .contact-date-status {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 10px;
 }
 
 .contact-date {
-  font-size: 0.8em;
-  color: #999;
+  font-size: 12px;
+  color: #aaa;
 }
 
 .contact-status {
-  font-size: 0.8em;
-  color: #999;
-  margin-top: 5px;
-}
-
-.contact-status.read {
-  color: green;
-}
-
-.contact-status.delivered {
-  color: blue;
-}
-
-.contact-status.pending {
-  color: orange;
+  font-size: 12px;
+  color: #4caf50;
 }

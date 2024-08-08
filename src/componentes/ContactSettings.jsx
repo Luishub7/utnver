@@ -7,13 +7,16 @@ import { loadFromLocalStorage } from '../data/localStorage';
 const ContactSettings = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const contact = loadFromLocalStorage('contacts').find(c => c.id == contactId);
+  const contact = loadFromLocalStorage('contacts').find(c => c.id === contactId);
 
   return (
     <div className="settings-container">
       <div className="settings-header">
         <button className="back-button" onClick={() => navigate(-1)}>
-          ←
+          <img src="/imagenes/arrow_back.svg" alt="Back" />
+        </button>
+        <button className="home-button" onClick={() => navigate('/')}>
+          <img src="/imagenes/home.svg" alt="Home" />
         </button>
         <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
         <h1>Configuraciones de {contact.name}</h1>

@@ -49,8 +49,11 @@ const Chat = () => {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <button className="back-button" onClick={() => navigate('/')}>
-          ←
+        <button className="back-button" onClick={() => navigate(-1)}>
+          <img src="/imagenes/arrow_back.svg" alt="Back" />
+        </button>
+        <button className="home-button" onClick={() => navigate('/')}>
+          <img src="/imagenes/home.svg" alt="Home" />
         </button>
         <div className="contact-info-chat" onClick={handleContactClick}>
           <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
