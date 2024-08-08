@@ -7,23 +7,24 @@
 
 .contact-search {
   display: flex;
-  justify-content: center;
+  justify-content:space-evenly;
   position: fixed; /* Fijamos el input en la parte superior */
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000; /* Nos aseguramos de que esté por encima de otros elementos */
   padding: 10px;
-  background-color: #ffffff0d; /* Añadimos un fondo blanco para que se vea mejor */
-  border-bottom: 1px solid #ccc; /* Añadimos una línea inferior para separar el input del resto del contenido */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añadimos un ligero sombreado para destacar el input */
+  background-color:  #ffffff0d; /* Añadimos un fondo blanco para que se vea mejor */
+  /* border-bottom: 1px solid #ccc;  *//* Añadimos una línea inferior para separar el input del resto del contenido */
+/*   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */ /* Añadimos un ligero sombreado para destacar el input */
 }
 
 .search-input {
   padding: 10px;
+  margin: 10px 0px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 95%;
+  width: 60%;
 }
 
 .contact-list {
@@ -51,7 +52,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color:  #ddd;
   margin-right: 10px;
 }
 
@@ -71,7 +72,7 @@
 
 .contact-lastMessage {
   font-size: 0.9em;
-  color: #555;
+  color:  #555;
   text-align: left; /* Asegura que el texto esté alineado a la izquierda */
   width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
@@ -85,25 +86,66 @@
 
 .contact-date {
   font-size: 0.8em;
-  color: #999;
+  color:  #999;
 }
 
 .contact-status {
   font-size: 0.8em;
-  color: #999;
+  color:  #999;
   margin-top: 5px; /* Añade espacio entre la fecha y el estado */
 }
 
 .contact-status.read {
-  color: green;
+  color:  green;
 }
 
 .contact-status.delivered {
-  color: blue;
+  color:  blue;
 }
 
 .contact-status.pending {
-  color: orange;
+  color:  orange;
+}
+
+.add-contact-button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.add-contact-button:hover {
+  background-color: #45a049;
+}
+
+.add-contact-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.add-contact-form input {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-contact-form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-contact-form button:hover {
+  background-color: #45a049;
 }
 
 @media (max-width: 768px) {

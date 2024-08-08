@@ -1,17 +1,16 @@
 // src/componentes/ContactList.jsx
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../estilos/ContactList.css';
-import { loadFromLocalStorage } from '../data/localStorage';
+import { loadFromLocalStorage, saveToLocalStorage } from '../data/localStorage';
 
-// La función `getLastMessage` va aquí, antes de la declaración del componente `ContactList`
 const getLastMessage = (messages, contactId) => {
   const contactMessages = messages
     .filter(message => message.authorId === contactId || (message.authorId === 0 && message.recipientId === contactId))
-    .sort((a, b) => new Date(b.date) - new Date(a.date)); // Ordenar por fecha descendente
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  return contactMessages.length > 0 ? contactMessages[0] : null; // Devolver null si no hay mensajes
+  return contactMessages.length > 0 ? contactMessages[0] : null;
 };
 
 const formatDate = (date) => {
@@ -24,83 +23,69 @@ const formatDate = (date) => {
   if (timeDifference < oneDay) {
     return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   } else if (timeDifference < twoDays) {
-    return 'ayer';
+    return 'Ayer';
   } else {
     return messageDate.toLocaleDateString();
   }
 };
 
-const getStatusText = (status) => {
-  switch (status) {
-    case 'read':
-      return 'leído';
-    case 'delivered':
-      return 'entregado';
-    case 'pending':
-      return 'pendiente';
-    default:
-      return status;
-  }
-};
-
 const ContactList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [contacts, setContacts] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const storedContacts = loadFromLocalStorage('contacts') || [];
-    const storedMessages = loadFromLocalStorage('messages') || [];
-    setContacts(storedContacts);
-    setMessages(storedMessages);
-  }, []);
-
-  // Escuchar cambios en el storage
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setMessages(loadFromLocalStorage('messages') || []);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+    const loadedContacts = loadFromLocalStorage('contacts');
+    const loadedMessages = loadFromLocalStorage('messages');
+    setContacts(loadedContacts);
+    setMessages(loadedMessages);
   }, []);
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleAddContactClick = () => {
+    navigate('/new-contact'); // Redirigir a la pantalla de nuevo contacto
+  };
+
   return (
     <div className="contact-list-container">
-      <div className='contact-search'>
+      <div className="contact-search">
         <input
           type="text"
-          placeholder="Buscar contactos"
-          className="search-input"
+          placeholder="Buscar contacto..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
         />
+        <button className="add-contact-button" onClick={handleAddContactClick}>
+          Añadir nuevo contacto
+        </button>
       </div>
+
       <ul className="contact-list">
-        {filteredContacts.map(contact => {
+        {filteredContacts.map((contact) => {
           const lastMessage = getLastMessage(messages, contact.id);
           return (
             <li key={contact.id} className="contact-item">
               <Link to={`/chat/${contact.id}`} className="contact-link">
-                <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
+                <img src={contact.avatar} alt={contact.name} className="contact-avatar" />
                 <div className="contact-info">
-                  <div className="contact-name">{contact.name}</div>
-                  <div className="contact-lastMessage">
-                    {lastMessage ? lastMessage.content : 'No hay mensajes'}
-                  </div>
+                  <span className="contact-name">{contact.name}</span>
+                  <span className="contact-lastMessage">
+                    {lastMessage ? lastMessage.content : 'Sin mensajes'}
+                  </span>
                 </div>
-                {lastMessage && (
-                  <div className="contact-date-status">
-                    <span className="contact-date">{formatDate(lastMessage.date)}</span>
-                    <span className={`contact-status ${lastMessage.status}`}>{getStatusText(lastMessage.status)}</span>
-                  </div>
-                )}
+                <div className="contact-date-status">
+                  <span className="contact-date">
+                    {lastMessage ? formatDate(lastMessage.date) : ''}
+                  </span>
+                  <span className={`contact-status ${lastMessage ? lastMessage.status : ''}`}>
+                    {lastMessage ? lastMessage.status : ''}
+                  </span>
+                </div>
               </Link>
             </li>
           );
