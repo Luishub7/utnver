@@ -6,6 +6,7 @@ import Message from './Message';
 import MessageInput from './MessageInput';
 import '../estilos/Chat.css';
 import { loadFromLocalStorage, addMessageToLocalStorage, generateMessageId } from '../data/localStorage';
+import ErrorBoundary from './ErrorBoundary'; // Importar el ErrorBoundary
 
 const Chat = () => {
   const { contactId } = useParams();
@@ -46,27 +47,33 @@ const Chat = () => {
     window.dispatchEvent(new Event('storage')); // Disparar evento de almacenamiento
   };
 
+  if (!contact) {
+    return <div>El contacto no fue encontrado.</div>; // Manejo de caso donde contact es undefined
+  }
+
   return (
-    <div className="chat-container">
-      <div className="chat-header">
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <img src="/imagenes/arrow_back.svg" alt="Back" />
-        </button>
-        <button className="home-button" onClick={() => navigate('/')}>
-          <img src="/imagenes/home.svg" alt="Home" />
-        </button>
-        <div className="contact-info-chat" onClick={handleContactClick}>
-          <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
-          <div className="contact-name">{contact.name}</div>
+    <ErrorBoundary>
+      <div className="chat-container">
+        <div className="chat-header">
+          <button className="back-button" onClick={() => navigate(-1)}>
+            <img src="/imagenes/arrow_back.svg" alt="Back" />
+          </button>
+          <button className="home-button" onClick={() => navigate('/')}>
+            <img src="/imagenes/home.svg" alt="Home" />
+          </button>
+          <div className="contact-info-chat" onClick={handleContactClick}>
+            <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
+            <div className="contact-name">{contact.name}</div>
+          </div>
         </div>
+        <div className="messages-container">
+          {contactMessages.map(message => (
+            <Message key={message.id} message={message} />
+          ))}
+        </div>
+        <MessageInput onSendMessage={handleSendMessage} />
       </div>
-      <div className="messages-container">
-        {contactMessages.map(message => (
-          <Message key={message.id} message={message} />
-        ))}
-      </div>
-      <MessageInput onSendMessage={handleSendMessage} />
-    </div>
+    </ErrorBoundary>
   );
 };
 
