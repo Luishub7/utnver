@@ -43,9 +43,7 @@ const NewContact = () => {
         <button className="back-button" onClick={() => navigate(-1)}>
           <img src="/imagenes/arrow_back.svg" alt="Back" />
         </button>
-        <button className="home-button" onClick={() => navigate('/')}>
-          <img src="/imagenes/home.svg" alt="Home" />
-        </button>
+
       </div>
       <h2>Nuevo Contacto</h2>
       <form className="new-contact-form" onSubmit={handleSubmit}>

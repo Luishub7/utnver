@@ -3,7 +3,7 @@
 import React from 'react';
 import '../estilos/Message.css';
 
-const Message = ({ message }) => {
+const Message = ({ message, formattedDate }) => {
   const isMyMessage = message.authorId === 'yo';
 
   return (
@@ -12,7 +12,7 @@ const Message = ({ message }) => {
         {message.content}
       </div>
       <div className="message-info">
-        <span className="message-date">{new Date(message.date).toLocaleString()}</span>
+        <span className="message-date">{formattedDate}</span> {/* Usar formattedDate en lugar de toLocaleString */}
         <span className={`message-status ${message.status}`}>{message.status}</span>
       </div>
     </div>

@@ -8,6 +8,22 @@ import '../estilos/Chat.css';
 import { loadFromLocalStorage, addMessageToLocalStorage, generateMessageId } from '../data/localStorage';
 import ErrorBoundary from './ErrorBoundary'; // Importar el ErrorBoundary
 
+const formatDate = (date) => {
+  const messageDate = new Date(date);
+  const now = new Date();
+  const timeDifference = now - messageDate;
+  const oneDay = 24 * 60 * 60 * 1000;
+  const twoDays = 48 * 60 * 60 * 1000;
+
+  if (timeDifference < oneDay) {
+    return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  } else if (timeDifference < twoDays) {
+    return 'Ayer';
+  } else {
+    return messageDate.toLocaleDateString();
+  }
+};
+
 const Chat = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
@@ -68,7 +84,11 @@ const Chat = () => {
         </div>
         <div className="messages-container">
           {contactMessages.map(message => (
-            <Message key={message.id} message={message} />
+            <Message 
+              key={message.id} 
+              message={message} 
+              formattedDate={formatDate(message.date)} // Pasar la fecha formateada a cada mensaje
+            />
           ))}
         </div>
         <MessageInput onSendMessage={handleSendMessage} />

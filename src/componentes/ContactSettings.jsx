@@ -24,7 +24,7 @@ const ContactSettings = () => {
           <img src="/imagenes/home.svg" alt="Home" />
         </button>
         <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
-        <h1>Configuraciones de {contact.name}</h1>
+        <div><h1>Configuraciones de {contact.name}</h1></div>
       </div>
       <ul>
         <li>Notificaciones</li>
