@@ -2,45 +2,50 @@
 
 .new-contact-container {
   padding: 20px;
-  background-color: #f0f0f0;
+}
+
+.new-contact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button, .home-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 20px 0;
+  font-size: 24px;
 }
 
 .new-contact-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.contact-name-input,
-.contact-avatar-select {
+label {
+  margin-bottom: 15px;
+}
+
+input[type="text"], select {
+  width: 7%;
   padding: 10px;
-  width: -webkit-fill-available;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  font-size: 16px;
+  margin-top: 5px;
+  border-radius: 15px;
+  border: solid 1px rgb(17, 16, 16);
+  margin-top: 2px;
 }
 
-.submit-button {
+.new-contact-submit {
   padding: 10px 20px;
+  background-color: #12be29;
+  color: #fff;
   border: none;
-  border-radius: 20px;
-  background-color: #6ac47e; /* Verde pastel */
-  color: white;
   cursor: pointer;
-}
-
-.contact-avatar-select option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar-option-image {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
+  border-radius: 5px;
+  align-self:auto;
 }

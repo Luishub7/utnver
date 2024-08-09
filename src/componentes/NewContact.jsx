@@ -2,62 +2,75 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveToLocalStorage, loadFromLocalStorage } from '../data/localStorage';
 import '../estilos/NewContact.css';
-import { loadFromLocalStorage, saveToLocalStorage } from '../data/localStorage';
-
-const avatarOptions = [
-  "/imagenes/avatar1.png",
-  "/imagenes/avatar2.png",
-  "/imagenes/avatar3.png",
-  "/imagenes/avatar4.png"
-];
 
 const NewContact = () => {
   const [name, setName] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
+  const [avatar, setAvatar] = useState('');
   const navigate = useNavigate();
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+  const avatarOptions = [
+    '/imagenes/1.webp',
+    '/imagenes/2.webp',
+    '/imagenes/3.webp',
+    '/imagenes/4.webp',
+    '/imagenes/4.webp',
+    '/imagenes/5.webp',
+    '/imagenes/6.webp',
+    '/imagenes/7.webp',
+    '/imagenes/8.webp'
+  ];
 
-  const handleAvatarChange = (event) => {
-    setSelectedAvatar(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (name.trim() === '') return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newContact = {
+      id: Date.now(),
+      name,
+      avatar
+    };
 
     const contacts = loadFromLocalStorage('contacts') || [];
-    const newContact = {
-      id: contacts.length + 1,
-      name,
-      avatar: selectedAvatar,
-    };
-    saveToLocalStorage('contacts', [...contacts, newContact]);
+    contacts.push(newContact);
+    saveToLocalStorage('contacts', contacts);
+
     navigate('/');
   };
 
   return (
     <div className="new-contact-container">
+      <div className="new-contact-header">
+        <button className="back-button" onClick={() => navigate(-1)}>
+          <img src="/imagenes/arrow_back.svg" alt="Back" />
+        </button>
+
+      </div>
+      <h2>Nuevo Contacto</h2>
       <form className="new-contact-form" onSubmit={handleSubmit}>
         <label>
           Nombre:
-          <input type="text" value={name} onChange={handleNameChange} className="contact-name-input" />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </label>
         <label>
           Avatar:
-          <select value={selectedAvatar} onChange={handleAvatarChange} className="contact-avatar-select">
-            {avatarOptions.map((avatar, index) => (
-              <option key={index} value={avatar}>
-                <img src={avatar} alt={`Avatar ${index + 1}`} className="avatar-option-image" />
-                Avatar {index + 1}
+          <select value={avatar} onChange={(e) => setAvatar(e.target.value)} required>
+            <option value="">Seleccionar avatar</option>
+            {avatarOptions.map((option) => (
+              <option key={option} value={option}>
+                <img src={option} alt="Avatar opción" className="avatar-option" />
+                {option}
               </option>
             ))}
           </select>
         </label>
-        <button type="submit" className="submit-button">Añadir Contacto</button>
+        <button type="submit" className="new-contact-submit">
+          Guardar
+        </button>
       </form>
     </div>
   );
