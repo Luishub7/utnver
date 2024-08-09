@@ -28,6 +28,17 @@
   margin-top: 5px;
 }
 
-.message-status {
+.message-status.Leído {
   margin-left: 10px;
+  color: #00aa25;
+}
+.message-status.Pendiente {
+  margin-left: 10px;
+  color: #d80404;
+}
+
+}
+.message-status.Pendiente {
+  margin-left: 10px;
+  color: #1204d8;
 }
