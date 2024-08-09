@@ -9,12 +9,14 @@
 
 .my-message,
 .their-message {
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
   border-radius: 10px;
+  border: solid 1px #3ba556;
+
 }
 
 .message-content {
-  padding: 10px;
+  padding: 10px 10px 10px 0px;
   border-radius: 10px;
 }
 

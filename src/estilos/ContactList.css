@@ -34,8 +34,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  border: 1px solid #3ba556;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .contact-link {
@@ -43,7 +45,7 @@
   color: inherit;
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  width: 100%;
 }
 
 .contact-avatar {
@@ -56,6 +58,7 @@
 .contact-info-main {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .contact-name {

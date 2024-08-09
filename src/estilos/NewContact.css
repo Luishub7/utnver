@@ -37,6 +37,7 @@ input[type="text"], select {
   margin-top: 5px;
   border-radius: 15px;
   border: none;
+  margin-top: 2px;
 }
 
 .new-contact-submit {
