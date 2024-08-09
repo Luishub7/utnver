@@ -104,3 +104,6 @@
 .contact-status.Pendiente {
   color: #f00;
 }
+.contact-status.Entregado {
+  color: rgb(55, 0, 255);
+}
