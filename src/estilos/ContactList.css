@@ -2,6 +2,7 @@
 
 .contact-list-container {
   padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .contact-search {
@@ -11,40 +12,51 @@
 }
 
 .search-input {
-  width: 70%;
+  flex-grow: 1;
   padding: 10px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
 }
 
 .add-contact-button {
   padding: 10px 20px;
-  background-color: #12be29;
-  color: #fff;
   border: none;
+  border-radius: 20px;
+  background-color: #6ac47e; /* Verde pastel */
+  color: white;
   cursor: pointer;
-  border-radius: 15px;
 }
 
 .contact-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .contact-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
-  border: 1px solid #3ba556;
-  border-radius: 10px;
+  padding: 10px;
   margin-bottom: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-item:hover {
+  background-color: #f9f9f9;
 }
 
 .contact-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-decoration: none;
   color: inherit;
-  display: flex;
-  align-items: center;
   width: 100%;
 }
 
@@ -63,6 +75,8 @@
 
 .contact-name {
   font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .contact-lastMessage {
@@ -78,10 +92,15 @@
 
 .contact-date {
   font-size: 12px;
-  color: #aaa;
+  color: #888;
 }
 
 .contact-status {
   font-size: 12px;
-  color: #4caf50;
+  color: #6ac47e;
+  margin-top: 5px;
+}
+
+.contact-status.Pendiente {
+  color: #f00;
 }

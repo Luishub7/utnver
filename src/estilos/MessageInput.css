@@ -1,32 +1,25 @@
 /* src/estilos/MessageInput.css */
+
 .message-input-container {
-  /* display: flex; */
+  display: flex;
   padding: 10px;
-  /* border-top: 1px solid #ccc; */
-  background-color: white;
-  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
 }
 
 .message-input {
   flex-grow: 1;
-  margin-right: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 15px;
-}
-
-.button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
+  border-radius: 20px;
+  margin-right: 10px;
 }
 
 .send-button {
-  background-color: #12be29;
-}
-
-.send-button:hover {
-  background-color: #0056b3;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #6ac47e; /* Verde pastel */
+  color: white;
+  cursor: pointer;
 }

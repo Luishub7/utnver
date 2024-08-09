@@ -6,7 +6,7 @@ import Message from './Message';
 import MessageInput from './MessageInput';
 import '../estilos/Chat.css';
 import { loadFromLocalStorage, addMessageToLocalStorage, generateMessageId } from '../data/localStorage';
-import ErrorBoundary from './ErrorBoundary'; // Importar el ErrorBoundary
+import ErrorBoundary from './ErrorBoundary';
 
 const formatDate = (date) => {
   const messageDate = new Date(date);
