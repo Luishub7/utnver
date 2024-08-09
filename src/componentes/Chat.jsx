@@ -1,6 +1,5 @@
 // src/componentes/Chat.jsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Message from './Message';
 import MessageInput from './MessageInput';
@@ -28,11 +27,20 @@ const Chat = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null); // Crear una referencia al final de la lista de mensajes
 
   useEffect(() => {
     const storedMessages = loadFromLocalStorage('messages') || [];
     setMessages(storedMessages);
   }, []);
+
+  useEffect(() => {
+    scrollToBottom(); // Desplazarse al final cuando se carguen los mensajes
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const contactMessages = messages.filter(
     message =>
@@ -61,6 +69,7 @@ const Chat = () => {
     addMessageToLocalStorage(newMessage);
 
     window.dispatchEvent(new Event('storage')); // Disparar evento de almacenamiento
+    scrollToBottom(); // Desplazarse hacia el final del chat después de enviar un mensaje
   };
 
   if (!contact) {
@@ -90,6 +99,7 @@ const Chat = () => {
               formattedDate={formatDate(message.date)} // Pasar la fecha formateada a cada mensaje
             />
           ))}
+          <div ref={messagesEndRef} /> {/* Referencia al final de la lista de mensajes */}
         </div>
         <MessageInput onSendMessage={handleSendMessage} />
       </div>
