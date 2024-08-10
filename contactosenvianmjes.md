@@ -36,7 +36,11 @@ if (contacts.length === 0) {
       messages.push(newMessage);
       localStorage.setItem('messages', JSON.stringify(messages));
 
+      // Mostrar alerta del mensaje enviado
       alert(`Mensaje enviado por ${selectedContact.name} a ti: "${messageContent}"`);
+
+      // Recargar la página para mostrar el nuevo mensaje (Modificación añadida)
+      window.location.reload();
     } else {
       alert("El mensaje no puede estar vacío.");
     }
