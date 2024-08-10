@@ -5,14 +5,25 @@
   margin: 5px 0;
   display: flex;
   flex-direction: column;
+  max-width: 60%; /* Limitar el ancho máximo de los mensajes */
 }
 
-.my-message,
-.their-message {
+.my-message {
   padding: 0px 10px 10px 10px;
+  
+  /* width: 50%; */
   border-radius: 10px;
   border: solid 1px #3ba556;
+  background-color: #dcf8c6; /* Verde claro para tus mensajes */
+}
 
+.their-message {
+  padding: 0px 10px 10px 10px;
+  align-self: flex-end; /* Alinear a la derecha */
+  width: 50%;
+  border-radius: 10px;
+  border: solid 1px #3ba556;
+  background-color: #f1f0f0; /* Gris claro para los mensajes del contacto */
 }
 
 .message-content {
@@ -32,11 +43,11 @@
   margin-left: 10px;
   color: #00aa25;
 }
+
 .message-status.Pendiente {
   margin-left: 10px;
   color: #d80404;
 }
-
 
 .message-status.Entregado {
   margin-left: 10px;

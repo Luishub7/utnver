@@ -4,7 +4,7 @@ import React from 'react';
 import '../estilos/Message.css';
 
 const Message = ({ message, formattedDate }) => {
-  const isMyMessage = message.authorId === 'yo';
+  const isMyMessage = message.authorId === 0;  // Cambiar a 0 si tú eres el autor
 
   return (
     <div className={`message-container ${isMyMessage ? 'my-message' : 'their-message'}`}>
