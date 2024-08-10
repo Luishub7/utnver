@@ -15,7 +15,6 @@ const NewContact = () => {
     '/imagenes/2.webp',
     '/imagenes/3.webp',
     '/imagenes/4.webp',
-    '/imagenes/4.webp',
     '/imagenes/5.webp',
     '/imagenes/6.webp',
     '/imagenes/7.webp',
@@ -43,7 +42,6 @@ const NewContact = () => {
         <button className="back-button" onClick={() => navigate(-1)}>
           <img src="/imagenes/arrow_back.svg" alt="Back" />
         </button>
-
       </div>
       <h2>Nuevo Contacto</h2>
       <form className="new-contact-form" onSubmit={handleSubmit}>
@@ -58,15 +56,31 @@ const NewContact = () => {
         </label>
         <label>
           Avatar:
-          <select value={avatar} onChange={(e) => setAvatar(e.target.value)} required>
-            <option value="">Seleccionar avatar</option>
-            {avatarOptions.map((option) => (
-              <option key={option} value={option}>
-                <img src={option} alt="Avatar opción" className="avatar-option" />
-                {option}
-              </option>
-            ))}
-          </select>
+          <div className="avatar-select">
+            <select 
+              value={avatar} 
+              onChange={(e) => setAvatar(e.target.value)} 
+              required
+            >
+              <option value="">Seleccionar avatar</option>
+              {avatarOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <ul className="avatar-options">
+              {avatarOptions.map((option) => (
+                <li 
+                  key={option} 
+                  onClick={() => setAvatar(option)} 
+                  className={avatar === option ? 'selected' : ''}
+                >
+                  <img src={option} alt="Avatar opción" className="avatar-option" />
+                </li>
+              ))}
+            </ul>
+          </div>
         </label>
         <button type="submit" className="new-contact-submit">
           Guardar

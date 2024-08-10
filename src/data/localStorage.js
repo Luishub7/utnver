@@ -31,7 +31,7 @@ export const initializeLocalStorage = () => {
     const contacts = [
       { id: 1, name: 'Pepe', avatar: '/imagenes/1.webp' },
       { id: 2, name: 'Ana', avatar: '/imagenes/2.webp' },
-      { id: 3, name: 'Marcelo', avatar: '/imagenes/3.webp' },
+      { id: 3, name: 'Monica', avatar: '/imagenes/3.webp' },
       { id: 4, name: 'María', avatar: '/imagenes/4.webp' },
       { id: 5, name: 'Carlos', avatar: '/imagenes/5.webp' },
       { id: 6, name: 'Laura', avatar: '/imagenes/6.webp' },
