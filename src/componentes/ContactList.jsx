@@ -1,9 +1,8 @@
-// src/componentes/ContactList.jsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useChat } from '../context/ChatContext';
+import { formatDate } from '../utils/dateUtils';
 import '../estilos/ContactList.css';
-import { loadFromLocalStorage } from '../data/localStorage';
 
 const getLastMessage = (messages, contactId) => {
   const contactMessages = messages
@@ -13,34 +12,10 @@ const getLastMessage = (messages, contactId) => {
   return contactMessages.length > 0 ? contactMessages[0] : null;
 };
 
-const formatDate = (date) => {
-  const messageDate = new Date(date);
-  const now = new Date();
-  const timeDifference = now - messageDate;
-  const oneDay = 24 * 60 * 60 * 1000;
-  const twoDays = 48 * 60 * 60 * 1000;
-
-  if (timeDifference < oneDay) {
-    return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  } else if (timeDifference < twoDays) {
-    return 'Ayer';
-  } else {
-    return messageDate.toLocaleDateString();
-  }
-};
-
 const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const { contacts, messages } = useChat();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const loadedContacts = loadFromLocalStorage('contacts');
-    const loadedMessages = loadFromLocalStorage('messages');
-    setContacts(loadedContacts);
-    setMessages(loadedMessages);
-  }, []);
 
   const filteredContacts = contacts
     .filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -49,18 +24,18 @@ const ContactList = () => {
       const lastMessageB = getLastMessage(messages, b.id);
 
       if (lastMessageA && lastMessageB) {
-        return new Date(lastMessageB.date) - new Date(lastMessageA.date); // Ordenar por fecha de último mensaje
+        return new Date(lastMessageB.date) - new Date(lastMessageA.date);
       } else if (lastMessageA) {
-        return -1; // Contacto A tiene mensaje, B no
+        return -1;
       } else if (lastMessageB) {
-        return 1; // Contacto B tiene mensaje, A no
+        return 1;
       } else {
-        return 0; // Ninguno tiene mensajes, mantener orden actual
+        return 0;
       }
     });
 
   const handleAddContactClick = () => {
-    navigate('/new-contact'); // Redirigir a la pantalla de nuevo contacto
+    navigate('/new-contact');
   };
 
   return (
@@ -77,7 +52,6 @@ const ContactList = () => {
           Nuevo Contacto
         </button>
       </div>
-
       <ul className="contact-list">
         {filteredContacts.map((contact) => {
           const lastMessage = getLastMessage(messages, contact.id);

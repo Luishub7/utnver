@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Algo salió mal. Por favor intenta nuevamente.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 

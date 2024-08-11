@@ -1,13 +1,13 @@
-// src/componentes/NewContact.jsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveToLocalStorage, loadFromLocalStorage } from '../data/localStorage';
+import { useChat } from '../context/ChatContext';
+import localStorageService from '../utils/localStorageService';
 import '../estilos/NewContact.css';
 
 const NewContact = () => {
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
+  const { contacts, setContacts } = useChat();
   const navigate = useNavigate();
 
   const avatarOptions = [
@@ -29,9 +29,9 @@ const NewContact = () => {
       avatar
     };
 
-    const contacts = loadFromLocalStorage('contacts') || [];
-    contacts.push(newContact);
-    saveToLocalStorage('contacts', contacts);
+    const updatedContacts = [...contacts, newContact];
+    setContacts(updatedContacts);
+    localStorageService.save('contacts', updatedContacts);
 
     navigate('/');
   };

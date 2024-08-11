@@ -1,41 +1,20 @@
-// src/componentes/Chat.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useChat } from '../context/ChatContext';
+import { formatDate } from '../utils/dateUtils';
 import Message from './Message';
 import MessageInput from './MessageInput';
-import '../estilos/Chat.css';
-import { loadFromLocalStorage, addMessageToLocalStorage, generateMessageId } from '../data/localStorage';
 import ErrorBoundary from './ErrorBoundary';
-
-const formatDate = (date) => {
-  const messageDate = new Date(date);
-  const now = new Date();
-  const timeDifference = now - messageDate;
-  const oneDay = 24 * 60 * 60 * 1000;
-  const twoDays = 48 * 60 * 60 * 1000;
-
-  if (timeDifference < oneDay) {
-    return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  } else if (timeDifference < twoDays) {
-    return 'Ayer';
-  } else {
-    return messageDate.toLocaleDateString();
-  }
-};
+import '../estilos/Chat.css';
 
 const Chat = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const [messages, setMessages] = useState([]);
-  const messagesEndRef = useRef(null); // Crear una referencia al final de la lista de mensajes
+  const { contacts, messages, addMessage } = useChat();
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const storedMessages = loadFromLocalStorage('messages') || [];
-    setMessages(storedMessages);
-  }, []);
-
-  useEffect(() => {
-    scrollToBottom(); // Desplazarse al final cuando se carguen los mensajes
+    scrollToBottom();
   }, [messages]);
 
   const scrollToBottom = () => {
@@ -48,32 +27,24 @@ const Chat = () => {
       (message.authorId === 0 && message.recipientId === Number(contactId))
   );
 
-  const contact = loadFromLocalStorage('contacts').find(c => c.id === Number(contactId));
-
-  const handleContactClick = () => {
-    navigate(`/settings/${contactId}`);
-  };
+  const contact = contacts.find(c => c.id === Number(contactId));
 
   const handleSendMessage = (newMessageContent) => {
     const newMessage = {
-      id: generateMessageId(),
+      id: localStorageService.generateMessageId(),
       authorId: 0,
       recipientId: Number(contactId),
       content: newMessageContent,
       date: new Date().toISOString(),
-      status: 'Pendiente', // Estado en español
+      status: 'Pendiente',
     };
 
-    const updatedMessages = [...messages, newMessage];
-    setMessages(updatedMessages);
-    addMessageToLocalStorage(newMessage);
-
-    window.dispatchEvent(new Event('storage')); // Disparar evento de almacenamiento
-    scrollToBottom(); // Desplazarse hacia el final del chat después de enviar un mensaje
+    addMessage(newMessage);
+    scrollToBottom();
   };
 
   if (!contact) {
-    return <div>El contacto no fue encontrado.</div>; // Manejo de caso donde contact es undefined
+    return <div>El contacto no fue encontrado.</div>;
   }
 
   return (
@@ -86,7 +57,7 @@ const Chat = () => {
           <button className="home-button" onClick={() => navigate('/')}>
             <img src="/imagenes/home.svg" alt="Home" />
           </button>
-          <div className="contact-info-chat" onClick={handleContactClick}>
+          <div className="contact-info-chat" onClick={() => navigate(`/settings/${contactId}`)}>
             <img src={contact.avatar} alt={`${contact.name} avatar`} className="contact-avatar" />
             <div className="contact-name">{contact.name}</div>
           </div>
@@ -96,10 +67,10 @@ const Chat = () => {
             <Message 
               key={message.id} 
               message={message} 
-              formattedDate={formatDate(message.date)} // Pasar la fecha formateada a cada mensaje
+              formattedDate={formatDate(message.date)}
             />
           ))}
-          <div ref={messagesEndRef} /> {/* Referencia al final de la lista de mensajes */}
+          <div ref={messagesEndRef} />
         </div>
         <MessageInput onSendMessage={handleSendMessage} />
       </div>

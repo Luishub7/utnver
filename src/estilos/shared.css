@@ -1,0 +1,30 @@
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .button-green {
+    background-color: #6ac47e;
+    color: white;
+  }
+  
+  .button-red {
+    background-color: #f00;
+    color: white;
+  }
+  
+  .input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .container {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+  }
+  

@@ -1,17 +1,16 @@
-// src/componentes/ContactSettings.jsx
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useChat } from '../context/ChatContext';
 import '../estilos/ContactSettings.css';
-import { loadFromLocalStorage } from '../data/localStorage';
 
 const ContactSettings = () => {
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const contact = loadFromLocalStorage('contacts').find(c => c.id === Number(contactId));
+  const { contacts } = useChat();
+  const contact = contacts.find(c => c.id === Number(contactId));
 
   if (!contact) {
-    return <div>El contacto no fue encontrado.</div>; // Manejo de caso donde contact es undefined
+    return <div>El contacto no fue encontrado.</div>;
   }
 
   return (
