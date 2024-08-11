@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useChat } from '../context/ChatContext';
-import localStorageService from '../utils/localStorageService';
 import '../estilos/NewContact.css';
 
 const NewContact = () => {
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
-  const { contacts, setContacts } = useChat();
+  const { addContact } = useChat();
   const navigate = useNavigate();
 
   const avatarOptions = [
@@ -29,10 +28,7 @@ const NewContact = () => {
       avatar
     };
 
-    const updatedContacts = [...contacts, newContact];
-    setContacts(updatedContacts);
-    localStorageService.save('contacts', updatedContacts);
-
+    addContact(newContact); // Usar addContact para actualizar el estado y localStorage
     navigate('/');
   };
 

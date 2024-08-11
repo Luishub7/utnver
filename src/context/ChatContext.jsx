@@ -18,11 +18,17 @@ export const ChatProvider = ({ children }) => {
     localStorageService.save('messages', updatedMessages);
   };
 
+  const addContact = (newContact) => {
+    const updatedContacts = [...contacts, newContact];
+    setContacts(updatedContacts);
+    localStorageService.save('contacts', updatedContacts);
+  };
+
   return (
-    <ChatContext.Provider value={{ contacts, messages, addMessage }}>
+    <ChatContext.Provider value={{ contacts, messages, addMessage, addContact }}>
       {children}
     </ChatContext.Provider>
   );
 };
 
-export  const useChat = () => useContext(ChatContext);
+export const useChat = () => useContext(ChatContext);

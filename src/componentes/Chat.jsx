@@ -5,6 +5,7 @@ import { formatDate } from '../utils/dateUtils';
 import Message from './Message';
 import MessageInput from './MessageInput';
 import ErrorBoundary from './ErrorBoundary';
+import localStorageService from '../utils/localStorageService';
 import '../estilos/Chat.css';
 
 const Chat = () => {
@@ -39,7 +40,7 @@ const Chat = () => {
       status: 'Pendiente',
     };
 
-    addMessage(newMessage);
+    addMessage(newMessage); // Usar addMessage para actualizar el estado y localStorage
     scrollToBottom();
   };
 
